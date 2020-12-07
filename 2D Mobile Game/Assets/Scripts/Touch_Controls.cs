@@ -9,7 +9,7 @@ public class Touch_Controls : MonoBehaviour
     public float minSwipeLength = 75f;
     Vector2 firstPressPos;
     Vector2 secondPressPos;
-    Vector2 currentSwipe;
+    public Vector2 currentSwipe;
 
     public static Swipe swipeDirection;
 

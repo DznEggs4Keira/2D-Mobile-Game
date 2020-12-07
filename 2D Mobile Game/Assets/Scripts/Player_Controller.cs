@@ -8,7 +8,8 @@ public class Player_Controller : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField]
     Animator animator;
-
+    [SerializeField]
+    Touch_Controls touch;
     float dashTime;
 
     public float dashSpeed;
@@ -28,12 +29,17 @@ public class Player_Controller : MonoBehaviour
         switch(Touch_Controls.swipeDirection)
         {
             case Touch_Controls.Swipe.None:
+                animator.SetFloat("Speed", touch.currentSwipe.sqrMagnitude);
                 break;
 
             //Dashing
             case Touch_Controls.Swipe.Up:
 
                 //Dash animation
+                animator.SetFloat("Vertical", touch.currentSwipe.y);
+                animator.SetFloat("Horizontal", touch.currentSwipe.x);
+                animator.SetFloat("Speed", touch.currentSwipe.sqrMagnitude);
+
                 //run up
                 animator.SetFloat("Run", 0);
 
@@ -42,6 +48,10 @@ public class Player_Controller : MonoBehaviour
             case Touch_Controls.Swipe.Down:
 
                 //Dash animation
+                animator.SetFloat("Vertical", touch.currentSwipe.y);
+                animator.SetFloat("Horizontal", touch.currentSwipe.x);
+                animator.SetFloat("Speed", touch.currentSwipe.sqrMagnitude);
+
                 //run up
                 animator.SetFloat("Run", 1);
 
@@ -52,6 +62,9 @@ public class Player_Controller : MonoBehaviour
                 Debug.Log("Shift to the Left");
 
                 //Shift animation
+                animator.SetFloat("Vertical", touch.currentSwipe.y);
+                animator.SetFloat("Horizontal", touch.currentSwipe.x);
+                animator.SetFloat("Speed", touch.currentSwipe.sqrMagnitude);
 
                 break;
 
@@ -59,6 +72,9 @@ public class Player_Controller : MonoBehaviour
                 Debug.Log("Shift to the Right");
 
                 //Shift animation
+                animator.SetFloat("Vertical", touch.currentSwipe.y);
+                animator.SetFloat("Horizontal", touch.currentSwipe.x);
+                animator.SetFloat("Speed", touch.currentSwipe.sqrMagnitude);
 
                 break;
         }

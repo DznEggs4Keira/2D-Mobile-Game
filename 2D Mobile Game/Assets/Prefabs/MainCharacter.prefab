@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minSwipeLength: 200
+  currentSwipe: {x: 0, y: 0}
 --- !u!114 &8704436249143763223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 8704436249143763211}
   animator: {fileID: -1870362186206748371}
+  touch: {fileID: 8704436249143763216}
   dashSpeed: 2500
   startDashTime: 0.1
 --- !u!95 &-1870362186206748371
