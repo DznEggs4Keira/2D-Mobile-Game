@@ -6,6 +6,9 @@ public class Player_Controller : MonoBehaviour
 {
     [SerializeField]
     Rigidbody2D rb;
+    [SerializeField]
+    Animator animator;
+
     float dashTime;
 
     public float dashSpeed;
@@ -14,6 +17,51 @@ public class Player_Controller : MonoBehaviour
     private void Start()
     {
         dashTime = startDashTime;
+
+        //by default looking forward
+        animator.SetFloat("Run", 0);
+    }
+
+    //handle animations in update for framerate
+    private void Update()
+    {
+        switch(Touch_Controls.swipeDirection)
+        {
+            case Touch_Controls.Swipe.None:
+                break;
+
+            //Dashing
+            case Touch_Controls.Swipe.Up:
+
+                //Dash animation
+                //run up
+                animator.SetFloat("Run", 0);
+
+                break;
+
+            case Touch_Controls.Swipe.Down:
+
+                //Dash animation
+                //run up
+                animator.SetFloat("Run", 1);
+
+                break;
+
+            //Shifting
+            case Touch_Controls.Swipe.Left:
+                Debug.Log("Shift to the Left");
+
+                //Shift animation
+
+                break;
+
+            case Touch_Controls.Swipe.Right:
+                Debug.Log("Shift to the Right");
+
+                //Shift animation
+
+                break;
+        }
     }
 
     //When dealing with physics, it's better to use Fixed Updates
@@ -40,14 +88,17 @@ public class Player_Controller : MonoBehaviour
                 case Touch_Controls.Swipe.Up:
                     Debug.Log("Dash Forwards");
 
-                    rb.velocity = Vector2.up * dashSpeed;
+                    //Dash animation
+                    //run up
+
+                    rb.velocity = Vector2.up * dashSpeed * Time.deltaTime;
 
                     break;
 
                 case Touch_Controls.Swipe.Down:
                     Debug.Log("Dash Backwards");
 
-                    rb.velocity = Vector2.down * dashSpeed;
+                    rb.velocity = Vector2.down * dashSpeed * Time.deltaTime;
 
                     break;
 
@@ -55,14 +106,14 @@ public class Player_Controller : MonoBehaviour
                 case Touch_Controls.Swipe.Left:
                     Debug.Log("Shift to the Left");
 
-                    rb.velocity = Vector2.left * dashSpeed * 4;
+                    rb.velocity = Vector2.left * dashSpeed * 4 * Time.deltaTime;
 
                     break;
 
                 case Touch_Controls.Swipe.Right:
                     Debug.Log("Shift to the Right");
 
-                    rb.velocity = Vector2.right * dashSpeed * 4;
+                    rb.velocity = Vector2.right * dashSpeed * 4 * Time.deltaTime;
 
                     break;
             }
