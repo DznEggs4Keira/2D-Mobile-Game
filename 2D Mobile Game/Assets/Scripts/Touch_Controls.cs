@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Touch_Controls : MonoBehaviour
 {
-public enum Swipe { None, Up, Down, Left, Right };
+    public enum Swipe { None, Up, Down, Left, Right };
 
-    public float minSwipeLength = 200f;
+    public float minSwipeLength = 100f;
     Vector2 firstPressPos;
     Vector2 secondPressPos;
     Vector2 currentSwipe;
@@ -14,11 +14,6 @@ public enum Swipe { None, Up, Down, Left, Right };
     public static Swipe swipeDirection;
 
     void Update()
-    {
-        DetectSwipe();
-    }
-
-    public void DetectSwipe()
     {
         if (Input.touches.Length > 0)
         {
@@ -46,7 +41,7 @@ public enum Swipe { None, Up, Down, Left, Right };
                 // Swipe up
                 if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
                     swipeDirection = Swipe.Up;
-                
+
                 // Swipe down
                 else if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
                     swipeDirection = Swipe.Down;

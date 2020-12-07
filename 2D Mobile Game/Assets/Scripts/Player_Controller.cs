@@ -4,34 +4,68 @@ using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
-    Touch_Controls touch;
+    [SerializeField]
+    Rigidbody2D rb;
+    float dashTime;
+
+    public float dashSpeed;
+    public float startDashTime;
+
+    private void Start()
+    {
+        dashTime = startDashTime;
+    }
 
     //When dealing with physics, it's better to use Fixed Updates
     private void FixedUpdate()
     {
-        switch(Touch_Controls.swipeDirection)
+        if(dashTime <= 0)
         {
-            case Touch_Controls.Swipe.None:
-            default:
-                break;
+            Touch_Controls.swipeDirection = Touch_Controls.Swipe.None;
+            dashTime = startDashTime;
+            rb.velocity = Vector2.zero;
+        }
+        else
+        {
+            dashTime -= Time.deltaTime;
 
-            //Dashing
-            case Touch_Controls.Swipe.Up:
-                Debug.Log("Dash Forwards");
-                break;
+            switch (Touch_Controls.swipeDirection)
+            {
+                case Touch_Controls.Swipe.None:
+                    dashTime = startDashTime;
+                    rb.velocity = Vector2.zero;
+                    break;
 
-            case Touch_Controls.Swipe.Down:
-                Debug.Log("Dash Backwards");
-                break;
+                //Dashing
+                case Touch_Controls.Swipe.Up:
+                    Debug.Log("Dash Forwards");
 
-            //Shifting
-            case Touch_Controls.Swipe.Left:
-                Debug.Log("Shift to the Left");
-                break;
+                    rb.velocity = Vector2.up * dashSpeed;
 
-            case Touch_Controls.Swipe.Right:
-                Debug.Log("Shift to the Right");
-                break;
+                    break;
+
+                case Touch_Controls.Swipe.Down:
+                    Debug.Log("Dash Backwards");
+
+                    rb.velocity = Vector2.down * dashSpeed;
+
+                    break;
+
+                //Shifting
+                case Touch_Controls.Swipe.Left:
+                    Debug.Log("Shift to the Left");
+
+                    rb.velocity = Vector2.left * dashSpeed * 4;
+
+                    break;
+
+                case Touch_Controls.Swipe.Right:
+                    Debug.Log("Shift to the Right");
+
+                    rb.velocity = Vector2.right * dashSpeed * 4;
+
+                    break;
+            }
         }
     }
 }
