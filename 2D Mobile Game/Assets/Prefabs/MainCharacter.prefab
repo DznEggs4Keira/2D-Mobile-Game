@@ -163,7 +163,7 @@ MonoBehaviour:
   rb: {fileID: 8704436249143763211}
   animator: {fileID: -1870362186206748371}
   touch: {fileID: 8704436249143763216}
-  dashSpeed: 2500
+  dashSpeed: 50
   startDashTime: 0.1
 --- !u!95 &-1870362186206748371
 Animator:
