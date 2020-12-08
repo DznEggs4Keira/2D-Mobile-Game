@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
-    [SerializeField]
-    Rigidbody2D rb;
-    [SerializeField]
-    Animator animator;
-    [SerializeField]
-    Touch_Controls touch;
+    public Rigidbody2D rb;
+    public Animator animator;
+    public Touch_Controls touch;
+    public SpriteRenderer sr;
+
     float dashTime;
 
     public float dashSpeed;
@@ -51,6 +50,16 @@ public class Player_Controller : MonoBehaviour
                 //run up
                 animator.SetFloat("Run", 1);
                 break;
+
+            case Touch_Controls.Swipe.Left:
+                sr.flipY = true;
+
+                break;
+
+            case Touch_Controls.Swipe.Right:
+                sr.flipY = false;
+
+                break;
         }
     }
 
@@ -63,6 +72,7 @@ public class Player_Controller : MonoBehaviour
             dashTime = startDashTime;
             rb.velocity = Vector2.zero;
         }
+
         else
         {
             dashTime -= Time.deltaTime;

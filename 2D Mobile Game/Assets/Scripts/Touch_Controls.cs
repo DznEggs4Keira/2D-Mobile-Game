@@ -6,7 +6,7 @@ public class Touch_Controls : MonoBehaviour
 {
     public enum Swipe { None, Up, Down, Left, Right };
 
-    public float minSwipeLength = 75f;
+    public float minSwipeLength = 200f;
     Vector2 firstPressPos;
     Vector2 secondPressPos;
     public Vector2 currentSwipe;
