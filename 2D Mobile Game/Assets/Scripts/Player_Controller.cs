@@ -28,47 +28,76 @@ public class Player_Controller : MonoBehaviour
         animator.SetFloat("Vertical", touch.currentSwipe.y);
         animator.SetFloat("Horizontal", touch.currentSwipe.x);
 
-        if(Touch_Controls.swipeDirection != Touch_Controls.Swipe.None)
         {
-            animator.SetFloat("Speed", touch.currentSwipe.sqrMagnitude);
+            if (Touch_Controls.swipeDirection == Touch_Controls.Swipe.None)
+            {
+                animator.SetBool("Moving", false);
+            }
+            else
+            {
+                animator.SetBool("Moving", true);
+            }
         }
-        else
+
         {
-            animator.SetFloat("Speed", 0f);
-        }
-        
+            if (dashTime <= 0)
+            {
+                dashTime = startDashTime;
+                rb.velocity = Vector2.zero;
+            }
 
-        switch (Touch_Controls.swipeDirection)
-        {
-            //Dashing
-            case Touch_Controls.Swipe.Up:
-                //run up
-                animator.SetFloat("Run", 0);
-                break;
+            else
+            {
+                dashTime -= Time.deltaTime;
 
-            case Touch_Controls.Swipe.Down:
-                //run up
-                animator.SetFloat("Run", 1);
-                break;
+                switch (Touch_Controls.swipeDirection)
+                {
+                    case Touch_Controls.Swipe.None:
+                        dashTime = startDashTime;
+                        rb.velocity = Vector2.zero;
+                        break;
 
-            case Touch_Controls.Swipe.Left:
-                sr.flipY = true;
+                    //Dashing
+                    case Touch_Controls.Swipe.Up:
 
-                break;
+                        //run up
+                        animator.SetFloat("Run", 0);
 
-            case Touch_Controls.Swipe.Right:
-                sr.flipY = false;
+                        rb.velocity = Vector2.up * dashSpeed;
+                        break;
 
-                break;
+                    case Touch_Controls.Swipe.Down:
+
+                        //run up
+                        animator.SetFloat("Run", 1);
+
+                        rb.velocity = Vector2.down * dashSpeed;
+                        break;
+
+                    //Shifting
+                    case Touch_Controls.Swipe.Left:
+
+                        sr.flipY = true;
+
+                        rb.velocity = Vector2.left * dashSpeed * 4;
+                        break;
+
+                    case Touch_Controls.Swipe.Right:
+
+                        sr.flipY = false;
+
+                        rb.velocity = Vector2.right * dashSpeed * 4;
+                        break;
+                }
+            }
         }
     }
 
     //When dealing with physics, it's better to use Fixed Updates
-    private void FixedUpdate()
+    /*private void FixedUpdate()
     {
         if(dashTime <= 0)
         {
-            Touch_Controls.swipeDirection = Touch_Controls.Swipe.None;
             dashTime = startDashTime;
             rb.velocity = Vector2.zero;
         }
@@ -103,5 +132,5 @@ public class Player_Controller : MonoBehaviour
                     break;
             }
         }
-    }
+    }*/
 }
