@@ -13,17 +13,29 @@ public class Object_Pooler : MonoBehaviour
     }
 
     public List<Pool> Enemies;
+    public List<Pool> Powerups;
+
+    public Dictionary<string, Queue<GameObject>> powerPool;
     public Dictionary<string, Queue<GameObject>> enemyPool;
 
     // Start is called before the first frame update
     void Start()
     {
         enemyPool = new Dictionary<string, Queue<GameObject>>();
-    }
+        powerPool = new Dictionary<string, Queue<GameObject>>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        foreach (Pool pool in Enemies)
+        {
+            Queue<GameObject> objectPool = new Queue<GameObject>();
+
+            for (int i = 0; i < pool.size; i++)
+            {
+                GameObject obj = Instantiate(pool.prefab);
+                obj.SetActive(false);
+                objectPool.Enqueue(obj);
+            }
+
+            enemyPool.Add(pool.tag, objectPool);
+        }
     }
 }
