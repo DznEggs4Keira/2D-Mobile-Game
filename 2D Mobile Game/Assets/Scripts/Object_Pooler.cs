@@ -12,6 +12,15 @@ public class Object_Pooler : MonoBehaviour
         public int size;
     }
 
+    #region Singleton
+    public static Object_Pooler Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+    #endregion
+
     public List<Pool> Enemies;
     public List<Pool> Powerups;
 
@@ -24,6 +33,7 @@ public class Object_Pooler : MonoBehaviour
         enemyPool = new Dictionary<string, Queue<GameObject>>();
         powerPool = new Dictionary<string, Queue<GameObject>>();
 
+        //Enemies
         foreach (Pool pool in Enemies)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
@@ -37,5 +47,56 @@ public class Object_Pooler : MonoBehaviour
 
             enemyPool.Add(pool.tag, objectPool);
         }
+
+        //PowerUps
+        foreach (Pool pool in Powerups)
+        {
+            Queue<GameObject> objectPool = new Queue<GameObject>();
+
+            for (int i = 0; i < pool.size; i++)
+            {
+                GameObject obj = Instantiate(pool.prefab);
+                obj.SetActive(false);
+                objectPool.Enqueue(obj);
+            }
+
+            powerPool.Add(pool.tag, objectPool);
+        }
+    }
+
+    public GameObject SpawnEnemies(string tag, Vector2 position, Quaternion rotation)
+    {
+        if (!enemyPool.ContainsKey(tag))
+        {
+            Debug.LogWarning("Pool with tag " + tag + "doesn't exist");
+            return null;
+        }
+
+        GameObject objectToSpawn = enemyPool[tag].Dequeue();
+        objectToSpawn.SetActive(true);
+        objectToSpawn.transform.position = position;
+        objectToSpawn.transform.rotation = rotation;
+
+        enemyPool[tag].Enqueue(objectToSpawn);
+
+        return objectToSpawn;
+    }
+
+    public GameObject SpawnPowerUps(string tag, Vector2 position, Quaternion rotation)
+    {
+        if (!powerPool.ContainsKey(tag))
+        {
+            Debug.LogWarning("Pool with tag " + tag + "doesn't exist");
+            return null;
+        }
+
+        GameObject objectToSpawn = powerPool[tag].Dequeue();
+        objectToSpawn.SetActive(true);
+        objectToSpawn.transform.position = position;
+        objectToSpawn.transform.rotation = rotation;
+
+        powerPool[tag].Enqueue(objectToSpawn);
+
+        return objectToSpawn;
     }
 }

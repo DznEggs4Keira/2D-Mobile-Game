@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Boundaries
   - Gravity_Pool
-  - Upper_Bound
   layers:
   - Default
   - TransparentFX

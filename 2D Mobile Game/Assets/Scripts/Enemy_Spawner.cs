@@ -5,18 +5,10 @@ using UnityEngine;
 public class Enemy_Spawner : MonoBehaviour
 {
     public float moveSpeed = -5f;
-    public GameObject[] enemies;
 
     float cameraY;
     float reposPoint = 5f; // y/height of the new placement
-
-    Vector2 direction = new Vector2(0, -1);
     float force = 300f;
-
-    int randomEnemyIndex;
-
-    //for movement of enemies
-    GameObject tempEnemy;
 
     void Awake()
     {
@@ -50,22 +42,18 @@ public class Enemy_Spawner : MonoBehaviour
         }
     }
 
-    void MoveEnemy()
-    {
-        Rigidbody2D temp = tempEnemy.GetComponent<Rigidbody2D>();
-        temp.AddForce(direction * force);
-    }
-
     void SpawnEnemies()
     {
-        if (Random.Range(0, 10) > 5)
-        {
-            randomEnemyIndex = Random.Range(0, enemies.Length);
-        }
+        //random element from enemy pool list
+        int index = (int)Random.Range(0f, (Object_Pooler.Instance.Enemies.Count));
 
-        //Enemies
-        tempEnemy = Instantiate(enemies[randomEnemyIndex], new Vector3(Random.Range(-2, 2), transform.position.y, 0), Quaternion.identity);
+        //Spawn Enemies
+        MoveEnemy(Object_Pooler.Instance.SpawnEnemies(Object_Pooler.Instance.Enemies[index].tag,
+            new Vector3(Random.Range(-2, 2), transform.position.y, 0), Quaternion.identity));
+    }
 
-        MoveEnemy();
+    void MoveEnemy(GameObject temp)
+    {
+        temp.GetComponent<Rigidbody2D>().velocity = (Vector2.down * force * Time.deltaTime);
     }
 }

@@ -14,7 +14,7 @@ public class BoxEnemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Upper_Bound")
         {
-            Physics2D.IgnoreCollision(collision.collider, this.gameObject.GetComponent<Collider2D>());
+            Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), collision.collider);
         }
     }
 }
