@@ -4,18 +4,32 @@ using UnityEngine;
 
 public class PowerUp_Spawner : MonoBehaviour
 {
-    public float intervalTime = 5f;
+    public float startIntervalTime = 3f;
+
+    private float intervalTime;
+
+    private void Start()
+    {
+        intervalTime = startIntervalTime;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(SpawnPowerUps(intervalTime));
+        if (intervalTime == 0f)
+        {
+            SpawnPowerUps();
+            intervalTime = startIntervalTime;
+        }
+
+        else
+        {
+            intervalTime -= Time.deltaTime;
+        }
     }
 
-    IEnumerator SpawnPowerUps(float delay)
+    void SpawnPowerUps()
     {
-        yield return new WaitForSeconds(delay);
-
         //random element from enemy pool list
         int index = (int)Random.Range(0f, (Object_Pooler.Instance.Powerups.Count));
 

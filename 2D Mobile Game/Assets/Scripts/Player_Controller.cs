@@ -52,41 +52,28 @@ public class Player_Controller : MonoBehaviour
 
                 switch (Touch_Controls.swipeDirection)
                 {
-                    case Touch_Controls.Swipe.None:
-                        dashTime = startDashTime;
-                        rb.velocity = Vector2.zero;
-                        break;
-
                     //Dashing
                     case Touch_Controls.Swipe.Up:
 
                         //run up
                         animator.SetFloat("Run", 0);
-
-                        rb.velocity = Vector2.up * dashSpeed;
                         break;
 
                     case Touch_Controls.Swipe.Down:
 
                         //run up
                         animator.SetFloat("Run", 1);
-
-                        rb.velocity = Vector2.down * dashSpeed;
                         break;
 
                     //Shifting
                     case Touch_Controls.Swipe.Left:
 
                         sr.flipY = true;
-
-                        rb.velocity = Vector2.left * dashSpeed * 4;
                         break;
 
                     case Touch_Controls.Swipe.Right:
 
                         sr.flipY = false;
-
-                        rb.velocity = Vector2.right * dashSpeed * 4;
                         break;
                 }
             }
@@ -94,7 +81,7 @@ public class Player_Controller : MonoBehaviour
     }
 
     //When dealing with physics, it's better to use Fixed Updates
-    /*private void FixedUpdate()
+    private void FixedUpdate()
     {
         if(dashTime <= 0)
         {
@@ -132,5 +119,5 @@ public class Player_Controller : MonoBehaviour
                     break;
             }
         }
-    }*/
+    }
 }

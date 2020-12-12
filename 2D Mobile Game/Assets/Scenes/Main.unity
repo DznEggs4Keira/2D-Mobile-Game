@@ -250,15 +250,15 @@ MonoBehaviour:
   - tag: Health
     prefab: {fileID: 1982414742965360012, guid: ee8749ce2ae8ff949a15568cd72db5f4,
       type: 3}
-    size: 2
+    size: 1
   - tag: Shield
     prefab: {fileID: 5367695831031381554, guid: c8bc278b3a035804a9bf3b5b1a1a8d7b,
       type: 3}
-    size: 3
+    size: 1
   - tag: Gun
     prefab: {fileID: 4218166548149161604, guid: efb1625238c5463489bbc7b18d71edf5,
       type: 3}
-    size: 5
+    size: 1
 --- !u!4 &772367017
 Transform:
   m_ObjectHideFlags: 0
