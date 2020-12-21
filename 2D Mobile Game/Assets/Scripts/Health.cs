@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+
+    public GameObject RespawnPoint;
+
     public float StartingHealth = 100f;
 
     public float HealthPoints
@@ -15,7 +18,10 @@ public class Health : MonoBehaviour
 
             if (_HealthPoints <= 0f)
             {
-                //Dead
+                //put player on dead layer
+                this.gameObject.layer = 8;
+
+                StartCoroutine(Respawn(5));
             }
         }
     }
@@ -27,5 +33,17 @@ public class Health : MonoBehaviour
     void Start()
     {
         HealthPoints = StartingHealth;    
+    }
+
+    IEnumerator Respawn(float delay)
+    {
+        this.gameObject.GetComponent<Animator>().SetTrigger("Dead");
+
+        yield return new WaitForSeconds(delay);
+
+        this.transform.position = RespawnPoint.transform.position;
+        this.transform.rotation = RespawnPoint.transform.rotation;
+
+        this.gameObject.GetComponent<Animator>().SetTrigger("Respawn");
     }
 }

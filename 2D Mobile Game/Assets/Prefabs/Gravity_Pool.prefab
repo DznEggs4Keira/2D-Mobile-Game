@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 8467043613721010127}
   - component: {fileID: 6456086922666829636}
   - component: {fileID: 2368327133288067213}
+  - component: {fileID: 4999403927964538373}
   m_Layer: 0
   m_Name: Gravity_Pool
   m_TagString: Gravity_Pool
@@ -146,7 +147,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.08060551, y: -0.87610495}
@@ -183,6 +184,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
+--- !u!114 &4999403927964538373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544530299129339015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52fb88cb3dcb0844f86b23f892e8d7b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1001 &1559575618708469650
 PrefabInstance:
   m_ObjectHideFlags: 0

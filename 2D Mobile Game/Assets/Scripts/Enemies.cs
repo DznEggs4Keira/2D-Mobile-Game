@@ -31,4 +31,17 @@ public class Enemies : MonoBehaviour
         if (H == null) return;
         H.HealthPoints -= damage;
     }
+
+    //should only execute on the gravity pool, since it is the only trigger out of all the enemies
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            Health H = collision.GetComponent<Health>();
+
+            if (H == null) return;
+            //instant death
+            H.HealthPoints = 0f;
+        }
+    }
 }
