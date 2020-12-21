@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 8347400945916481293}
   - component: {fileID: 8347400945916481282}
   - component: {fileID: -3497429105326586428}
-  - component: {fileID: -3430779969898228456}
+  - component: {fileID: 1724611182818447239}
   m_Layer: 0
   m_Name: Saw_Enemy1
-  m_TagString: Untagged
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,9 +139,9 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &-3430779969898228456
+--- !u!114 &1724611182818447239
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,6 +150,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8347400945916481294}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc71b7d493e729747be73edd069bc934, type: 3}
+  m_Script: {fileID: 11500000, guid: 52fb88cb3dcb0844f86b23f892e8d7b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}

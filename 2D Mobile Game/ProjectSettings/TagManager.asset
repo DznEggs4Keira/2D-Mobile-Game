@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Boundaries
   - Gravity_Pool
+  - Enemies
   layers:
   - Default
   - TransparentFX
@@ -15,7 +15,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Dead
   - 
   - 
   - 

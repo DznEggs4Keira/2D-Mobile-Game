@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy_Spawner : MonoBehaviour
 {
-    public float moveSpeed = -5f;
+    public float moveSpeed = -10f;
 
     float cameraY;
     float reposPoint = 5f; // y/height of the new placement

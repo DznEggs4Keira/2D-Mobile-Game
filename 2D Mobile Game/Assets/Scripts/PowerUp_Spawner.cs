@@ -16,15 +16,13 @@ public class PowerUp_Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        intervalTime -= Time.deltaTime;
+
         if (intervalTime == 0f)
         {
             SpawnPowerUps();
+            Debug.Log("Spawned Powerup");
             intervalTime = startIntervalTime;
-        }
-
-        else
-        {
-            intervalTime -= Time.deltaTime;
         }
     }
 

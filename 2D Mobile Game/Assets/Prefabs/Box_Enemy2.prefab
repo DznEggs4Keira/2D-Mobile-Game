@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 1054246064270605833}
   - component: {fileID: 1054246064270605832}
   - component: {fileID: -214415639447041733}
-  - component: {fileID: 9113612515711336533}
+  - component: {fileID: -3814757618339058371}
   m_Layer: 0
   m_Name: Box_Enemy2
-  m_TagString: Untagged
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,9 +149,9 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &9113612515711336533
+--- !u!114 &-3814757618339058371
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1054246064270605839}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6508fa191794faf46963693978440b31, type: 3}
+  m_Script: {fileID: 11500000, guid: 52fb88cb3dcb0844f86b23f892e8d7b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1054246064270605832}
