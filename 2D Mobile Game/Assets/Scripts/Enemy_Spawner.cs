@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Enemy_Spawner : MonoBehaviour
 {
+    float force = 300f;
+    public float timer = 2f;
+    [SerializeField]
+    private float counter;
+
+    #region Moving Spawner
+    /*
     public float moveSpeed = -10f;
 
     float cameraY;
     float reposPoint = 5f; // y/height of the new placement
-    float force = 300f;
-
+    
     void Awake()
     {
         cameraY = Camera.main.gameObject.transform.position.y - 15f;
@@ -41,6 +47,31 @@ public class Enemy_Spawner : MonoBehaviour
             SpawnEnemies();
         }
     }
+    */
+    #endregion
+
+    #region Counter Spawner
+
+    private void Start()
+    {
+        counter = timer;
+    }
+
+    private void Update()
+    {
+        counter -= Time.deltaTime;
+
+        if(counter <= 0)
+        {
+            //spawn enemy
+            SpawnEnemies();
+
+            //reset timer
+            counter = timer;
+        }
+    }
+
+    #endregion
 
     void SpawnEnemies()
     {

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4828984168459670861}
   m_Layer: 0
   m_Name: Bananas_Gun
-  m_TagString: Untagged
+  m_TagString: Powerups
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

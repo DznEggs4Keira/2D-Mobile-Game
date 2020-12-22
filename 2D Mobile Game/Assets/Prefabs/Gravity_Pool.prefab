@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 4999403927964538373}
   m_Layer: 0
   m_Name: Gravity_Pool
-  m_TagString: Gravity_Pool
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +147,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.08060551, y: -0.87610495}
@@ -274,6 +274,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fan_right
       objectReference: {fileID: 0}
+    - target: {fileID: 5277712162206080845, guid: 0637744a250546b4bade99973baf85d0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0637744a250546b4bade99973baf85d0, type: 3}
 --- !u!4 &3705991668442333062 stripped
@@ -358,6 +363,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fan_left
+      objectReference: {fileID: 0}
+    - target: {fileID: 5277712162206080845, guid: 0637744a250546b4bade99973baf85d0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0637744a250546b4bade99973baf85d0, type: 3}

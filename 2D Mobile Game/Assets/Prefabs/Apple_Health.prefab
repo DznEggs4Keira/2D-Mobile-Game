@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8468837309143807325}
   m_Layer: 0
   m_Name: Apple_Health
-  m_TagString: Untagged
+  m_TagString: Powerups
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

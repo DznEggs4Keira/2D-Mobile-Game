@@ -18,10 +18,9 @@ public class PowerUp_Spawner : MonoBehaviour
     {
         intervalTime -= Time.deltaTime;
 
-        if (intervalTime == 0f)
+        if (intervalTime <= 0f)
         {
             SpawnPowerUps();
-            Debug.Log("Spawned Powerup");
             intervalTime = startIntervalTime;
         }
     }

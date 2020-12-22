@@ -45,5 +45,6 @@ public class Health : MonoBehaviour
         this.transform.rotation = RespawnPoint.transform.rotation;
 
         this.gameObject.GetComponent<Animator>().SetTrigger("Respawn");
+        this.gameObject.layer = 0;
     }
 }

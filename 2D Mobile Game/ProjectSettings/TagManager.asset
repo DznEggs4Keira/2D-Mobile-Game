@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Gravity_Pool
   - Enemies
+  - Powerups
+  - Dead
   layers:
   - Default
   - TransparentFX
@@ -15,8 +17,8 @@ TagManager:
   - UI
   - 
   - 
-  - Dead
-  - 
+  - Powerups
+  - Enemies
   - 
   - 
   - 
