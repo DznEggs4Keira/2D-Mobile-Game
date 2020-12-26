@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Animator animator;
-    public Touch_Controls touch;
     public SpriteRenderer sr;
+    public Touch_Controls touch;
 
     float dashTime;
 
