@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Background_Scroller : MonoBehaviour
 {
@@ -14,6 +12,9 @@ public class Background_Scroller : MonoBehaviour
     private void Start()
     {
         offset = new Vector2(0, vertMove);
+
+        //reset background texture
+        mat.mainTextureOffset = Vector2.zero;
     }
     // Update is called once per frame
     void Update()

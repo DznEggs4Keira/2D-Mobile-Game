@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8704436249143763221}
   - component: {fileID: 8704436249143763220}
   - component: {fileID: 8704436249143763211}
-  - component: {fileID: 8704436249143763216}
+  - component: {fileID: 937980316}
   - component: {fileID: 8704436249143763223}
   - component: {fileID: -1870362186206748371}
   - component: {fileID: 703156712852947580}
@@ -131,11 +131,11 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &8704436249143763216
+--- !u!114 &937980316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,8 +163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 8704436249143763211}
   animator: {fileID: -1870362186206748371}
-  touch: {fileID: 8704436249143763216}
   sr: {fileID: 8704436249143763221}
+  touch: {fileID: 937980316}
   dashSpeed: 50
   startDashTime: 0.1
 --- !u!95 &-1870362186206748371

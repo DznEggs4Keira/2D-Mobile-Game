@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy_Spawner : MonoBehaviour
 {
@@ -8,47 +6,6 @@ public class Enemy_Spawner : MonoBehaviour
     public float timer = 2f;
     [SerializeField]
     private float counter;
-
-    #region Moving Spawner
-    /*
-    public float moveSpeed = -10f;
-
-    float cameraY;
-    float reposPoint = 5f; // y/height of the new placement
-    
-    void Awake()
-    {
-        cameraY = Camera.main.gameObject.transform.position.y - 15f;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Move();
-        Reposition();
-    }
-
-    void Move()
-    {
-        //move spawner
-        Vector3 temp = transform.position;
-        temp.y += moveSpeed * Time.deltaTime;
-        transform.position = temp;
-    }
-
-    void Reposition()
-    {
-        if (transform.position.y < cameraY)
-        {
-            Vector3 temp = transform.position;
-            temp.y = reposPoint;
-            transform.position = temp;
-
-            SpawnEnemies();
-        }
-    }
-    */
-    #endregion
 
     #region Counter Spawner
 

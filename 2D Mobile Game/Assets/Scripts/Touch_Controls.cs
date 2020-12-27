@@ -28,7 +28,7 @@ public class Touch_Controls : MonoBehaviour
                 currentSwipe = new Vector3(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
 
                 // Make sure it was a legit swipe, not a tap
-                if (currentSwipe.magnitude < minSwipeLength)
+                if (currentSwipe.sqrMagnitude < minSwipeLength)
                 {
                     swipeDirection = Swipe.None;
                     return;

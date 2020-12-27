@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -45,6 +44,7 @@ public class Health : MonoBehaviour
         this.transform.rotation = RespawnPoint.transform.rotation;
 
         this.gameObject.GetComponent<Animator>().SetTrigger("Respawn");
+        HealthPoints = StartingHealth;
         this.gameObject.layer = 0;
     }
 }

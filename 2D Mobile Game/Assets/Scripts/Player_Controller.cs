@@ -38,84 +38,93 @@ public class Player_Controller : MonoBehaviour
         }
 
         {
-            if (dashTime <= 0)
+            switch (Touch_Controls.swipeDirection)
             {
-                dashTime = startDashTime;
-                rb.velocity = Vector2.zero;
-            }
+                case Touch_Controls.Swipe.None:
+                    //rb.velocity = Vector2.zero;
+                    //Debug.Log("No swipe");
+                    break;
 
-            else
-            {
-                dashTime -= Time.deltaTime;
+                //NOT REGISTERING
+                //Dashing
+                case Touch_Controls.Swipe.Up:
+                    //run up
+                    animator.SetFloat("Run", 0);
 
-                switch (Touch_Controls.swipeDirection)
-                {
-                    //Dashing
-                    case Touch_Controls.Swipe.Up:
+                    //rb.velocity = Vector2.up * dashSpeed;
+                    Debug.Log("Up swipe");
+                    break;
 
-                        //run up
-                        animator.SetFloat("Run", 0);
-                        break;
+                case Touch_Controls.Swipe.Down:
+                    //run up
+                    animator.SetFloat("Run", 1);
 
-                    case Touch_Controls.Swipe.Down:
+                    //rb.velocity = Vector2.down * dashSpeed;
+                    Debug.Log("Down swipe");
+                    break;
 
-                        //run up
-                        animator.SetFloat("Run", 1);
-                        break;
+                //Shifting
+                case Touch_Controls.Swipe.Left:
+                    sr.flipY = true;
 
-                    //Shifting
-                    case Touch_Controls.Swipe.Left:
+                    //rb.velocity = Vector2.left * dashSpeed * 4;
+                    Debug.Log("Left swipe");
+                    break;
 
-                        sr.flipY = true;
-                        break;
+                case Touch_Controls.Swipe.Right:
+                    sr.flipY = false;
 
-                    case Touch_Controls.Swipe.Right:
-
-                        sr.flipY = false;
-                        break;
-                }
+                    //rb.velocity = Vector2.right * dashSpeed * 4;
+                    Debug.Log("right swipe");
+                    break;
             }
         }
     }
 
     //When dealing with physics, it's better to use Fixed Updates
-    private void FixedUpdate()
-    {
-        if(dashTime <= 0)
-        {
-            dashTime = startDashTime;
-            rb.velocity = Vector2.zero;
-        }
+    //private void FixedUpdate()
+    //{
+    //    if(dashTime <= 0)
+    //    {
+    //        dashTime = startDashTime;
+    //        Debug.Log("dash reset");
+    //        //rb.velocity = Vector2.zero;
+    //    }
 
-        else
-        {
-            dashTime -= Time.deltaTime;
+    //    else
+    //    {
+    //        dashTime -= Time.deltaTime;
 
-            switch (Touch_Controls.swipeDirection)
-            {
-                case Touch_Controls.Swipe.None:
-                    dashTime = startDashTime;
-                    rb.velocity = Vector2.zero;
-                    break;
+    //        switch (Touch_Controls.swipeDirection)
+    //        {
+    //            case Touch_Controls.Swipe.None:
+    //                //rb.velocity = Vector2.zero;
+    //                Debug.Log("No swipe");
+    //                break;
 
-                //Dashing
-                case Touch_Controls.Swipe.Up:
-                    rb.velocity = Vector2.up * dashSpeed;
-                    break;
+    //            //NOT REGISTERING
+    //            //Dashing
+    //            case Touch_Controls.Swipe.Up:
+    //                //rb.velocity = Vector2.up * dashSpeed;
+    //                Debug.Log("Up swipe");
+    //                break;
 
-                case Touch_Controls.Swipe.Down:
-                    rb.velocity = Vector2.down * dashSpeed;
-                    break;
+    //            case Touch_Controls.Swipe.Down:
+    //                //rb.velocity = Vector2.down * dashSpeed;
+    //                Debug.Log("Down swipe");
+    //                break;
 
-                //Shifting
-                case Touch_Controls.Swipe.Left:
-                    rb.velocity = Vector2.left * dashSpeed * 4;
-                    break;
+    //            //Shifting
+    //            case Touch_Controls.Swipe.Left:
+    //                //rb.velocity = Vector2.left * dashSpeed * 4;
+    //                Debug.Log("Left swipe");
+    //                break;
 
-                case Touch_Controls.Swipe.Right:
-                    rb.velocity = Vector2.right * dashSpeed * 4;
-                    break;
-            }
-        }
-    }
+    //            case Touch_Controls.Swipe.Right:
+    //                //rb.velocity = Vector2.right * dashSpeed * 4;
+    //                Debug.Log("right swipe");
+    //                break;
+    //        }
+    //    }
+    //}
 }
