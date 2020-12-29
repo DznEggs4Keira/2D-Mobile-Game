@@ -6,6 +6,8 @@ public class Health : MonoBehaviour
 
     public GameObject RespawnPoint;
 
+    public HealthBar healthBar;
+
     public float StartingHealth = 100f;
 
     public float HealthPoints
@@ -14,6 +16,7 @@ public class Health : MonoBehaviour
         set
         {
             _HealthPoints = Mathf.Clamp(value, 0f, 100f);
+            healthBar.SetHealth((int)_HealthPoints);
 
             if (_HealthPoints <= 0f)
             {
@@ -31,7 +34,8 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HealthPoints = StartingHealth;    
+        HealthPoints = StartingHealth;
+        healthBar.SetMaxHealth((int)StartingHealth);
     }
 
     IEnumerator Respawn(float delay)
