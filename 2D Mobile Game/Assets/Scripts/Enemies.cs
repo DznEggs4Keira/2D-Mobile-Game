@@ -10,9 +10,9 @@ public class Enemies : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //ignore collisions with powerups
-        if(collision.gameObject.CompareTag("Powerups"))
+        if(collision.gameObject.CompareTag("Powerups") || collision.gameObject.CompareTag("Enemies"))
         {
-            Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), this.gameObject.GetComponent<Collider2D>(), true);
         }
         else
         {
@@ -38,11 +38,8 @@ public class Enemies : MonoBehaviour
             //if this script is on the gravity pool and the player comes into contact
             if (this.gameObject.CompareTag("Gravity_Pool"))
             {
-                if (collision.gameObject.CompareTag("Player"))
-                {
-                    //instant death
-                    H.HealthPoints = 0f;
-                }
+                //instant death
+                H.HealthPoints = 0f;
             }
 
             else

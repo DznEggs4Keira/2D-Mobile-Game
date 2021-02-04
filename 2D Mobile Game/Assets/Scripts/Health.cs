@@ -21,7 +21,7 @@ public class Health : MonoBehaviour
             if (_HealthPoints <= 0f)
             {
                 //put player on dead layer
-                this.gameObject.layer = 8;
+                this.gameObject.layer = 3;
 
                 StartCoroutine(Respawn(5));
             }

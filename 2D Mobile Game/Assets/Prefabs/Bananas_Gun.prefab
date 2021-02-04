@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1795444598573430574}
   - component: {fileID: 6471486284664599905}
   - component: {fileID: 4828984168459670861}
+  - component: {fileID: 4092465560063775613}
   m_Layer: 0
   m_Name: Bananas_Gun
   m_TagString: Powerups
@@ -48,6 +49,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -119,3 +121,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4092465560063775613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4218166548149161604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f511c2eda28e0f343a44784c371d31a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

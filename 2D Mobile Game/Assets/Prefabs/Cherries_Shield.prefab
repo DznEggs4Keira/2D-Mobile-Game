@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7820483076605810080}
   - component: {fileID: 4434008213049585609}
   - component: {fileID: 7410495159760122234}
+  - component: {fileID: -5318750299681721139}
   m_Layer: 0
   m_Name: Cherries_Shield
   m_TagString: Powerups
@@ -48,6 +49,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -119,3 +121,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-5318750299681721139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5367695831031381554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f511c2eda28e0f343a44784c371d31a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
