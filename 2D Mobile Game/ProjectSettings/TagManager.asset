@@ -7,18 +7,17 @@ TagManager:
   - Gravity_Pool
   - Enemies
   - Powerups
-  - Dead
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Dead
   - Water
   - UI
   - 
   - 
-  - Powerups
-  - Enemies
+  - 
+  - 
   - 
   - 
   - 

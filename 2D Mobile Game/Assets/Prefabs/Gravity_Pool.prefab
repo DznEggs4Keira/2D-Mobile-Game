@@ -49,6 +49,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -117,7 +118,7 @@ GameObject:
   - component: {fileID: 4999403927964538373}
   m_Layer: 0
   m_Name: Gravity_Pool
-  m_TagString: Enemies
+  m_TagString: Gravity_Pool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
