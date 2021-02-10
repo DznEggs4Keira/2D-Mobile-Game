@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 4732535457830724768}
   - component: {fileID: 7181044162098001077}
   - component: {fileID: 8468837309143807325}
-  - component: {fileID: -6912887991128098141}
-  m_Layer: 0
+  - component: {fileID: 3529817946737971235}
+  m_Layer: 7
   m_Name: Apple_Health
-  m_TagString: Powerups
+  m_TagString: Apple_Health
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-6912887991128098141
+--- !u!114 &3529817946737971235
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

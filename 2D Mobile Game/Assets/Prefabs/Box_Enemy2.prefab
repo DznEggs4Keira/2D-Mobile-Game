@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 1054246064270605833}
   - component: {fileID: 1054246064270605832}
   - component: {fileID: -214415639447041733}
-  - component: {fileID: -3814757618339058371}
-  m_Layer: 0
+  - component: {fileID: 1666709446397846919}
+  m_Layer: 6
   m_Name: Box_Enemy2
-  m_TagString: Enemies
+  m_TagString: Box_10
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,6 +50,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -151,7 +152,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &-3814757618339058371
+--- !u!114 &1666709446397846919
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -19,9 +19,12 @@ public class Main_Menu : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void OptionsButton()
+    public void PauseButton()
     {
-        //done in unity
+        //Game is paused
+        Time.timeScale = 0;
+
+        //maybe do something else here
     }
 
     public void QuitButton()

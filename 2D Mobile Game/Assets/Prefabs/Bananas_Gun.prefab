@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1795444598573430574}
   - component: {fileID: 6471486284664599905}
   - component: {fileID: 4828984168459670861}
-  - component: {fileID: 4092465560063775613}
-  m_Layer: 0
+  - component: {fileID: 2298800757626532557}
+  m_Layer: 7
   m_Name: Bananas_Gun
-  m_TagString: Powerups
+  m_TagString: Banana_Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4092465560063775613
+--- !u!114 &2298800757626532557
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 8347400945916481293}
   - component: {fileID: 8347400945916481282}
   - component: {fileID: -3497429105326586428}
-  - component: {fileID: 1724611182818447239}
-  m_Layer: 0
+  - component: {fileID: -6920493919192180512}
+  m_Layer: 6
   m_Name: Saw_Enemy1
-  m_TagString: Enemies
+  m_TagString: Saw_40
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,7 +142,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &1724611182818447239
+--- !u!114 &-6920493919192180512
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

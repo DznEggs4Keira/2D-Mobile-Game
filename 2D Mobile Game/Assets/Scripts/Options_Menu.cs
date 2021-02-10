@@ -1,18 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Options_Menu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    AudioMixer audioMixer;
+
+    //returns a bool of whether vibration is enabled or not
+    public void VibrateToggleButton(bool value)
     {
-        
+        //if value true. do something with it.
+        if (value)
+            Handheld.Vibrate();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void VolumeToggleButton(bool value)
     {
+        if(value)
+        {
+            audioMixer.SetFloat("volume", 0);
+        }
+        else
+        {
+            audioMixer.SetFloat("volume", -80);
+        }
         
     }
 }

@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 7656898779363195816}
   - component: {fileID: 7656898779363195817}
   - component: {fileID: -8965328841275816675}
-  - component: {fileID: -7428574583832465138}
-  m_Layer: 0
+  - component: {fileID: -4735999291128179110}
+  m_Layer: 6
   m_Name: SpikeBox_Enemy3
-  m_TagString: Enemies
+  m_TagString: SpikeBox_20
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,6 +50,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -151,7 +152,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &-7428574583832465138
+--- !u!114 &-4735999291128179110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

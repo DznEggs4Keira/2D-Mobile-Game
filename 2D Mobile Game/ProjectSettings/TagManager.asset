@@ -5,8 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Gravity_Pool
-  - Enemies
-  - Powerups
+  - Apple_Health
+  - Banana_Gun
+  - Cherry_Shield
+  - Box_10
+  - SpikeBox_20
+  - Saw_40
+  - Upper_Bound
   layers:
   - Default
   - TransparentFX
@@ -14,8 +19,8 @@ TagManager:
   - Dead
   - Water
   - UI
-  - 
-  - 
+  - Enemy
+  - Power
   - 
   - 
   - 

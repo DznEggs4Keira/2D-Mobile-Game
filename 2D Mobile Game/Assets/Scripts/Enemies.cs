@@ -4,30 +4,35 @@ public class Enemies : MonoBehaviour
 {
     public Animator animator = null;
 
-    private float damage = 10f;
-    private float force = 300f;
+    float boxDamage = 10f;
+    float spikeBoxDamage = 20f;
+    float saw = 40f;
+
+    float force = 200f;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //ignore collisions with powerups or other enemies
-        if(collision.gameObject.CompareTag("Powerups") || collision.gameObject.CompareTag("Enemies"))
+        //ignore collisions with upper bound
+        if(collision.gameObject.CompareTag("Upper_Bound"))
         {
             Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
         }
         else
         {
-            //Call Handle if regular enemy or gravity pool
+            //if this is the Gravity_Pool
             if (gameObject.CompareTag("Gravity_Pool"))
             {
                 GravityPool(collision);
             }
-            else
+            else if(collision.gameObject.CompareTag("Player"))
             {
                 RegularEnemies(collision);
             }
-
-            //Handle Damage
-            DealDamage(collision);
+            //if the collision is with boundaries or gravity pool
+            else
+            {
+                EnemyBounceBack(collision);
+            }
         }
     }
 
@@ -44,6 +49,9 @@ public class Enemies : MonoBehaviour
 
     private void GravityPool(Collision2D collision)
     {
+        //if player, instant death
+        DealDamage(collision);
+
         //Enemies should bounce back
         EnemyBounceBack(collision);
     }
@@ -57,6 +65,8 @@ public class Enemies : MonoBehaviour
         {
             animator.SetTrigger("Hit");
         }
+
+        DealDamage(collision);
     }
 
     private void DealDamage(Collision2D collision)
@@ -66,15 +76,33 @@ public class Enemies : MonoBehaviour
 
         if (H == null) return;
 
-        if(gameObject.CompareTag("Gravity_Pool"))
+        string tag = gameObject.tag;
+        switch (tag)
         {
-            //instant death to player
-            H.HealthPoints = 0f;
-        }
-        else
-        {
-            //Damage Dealt
-            H.HealthPoints -= damage;
+            case "Gravity_Pool":
+                {
+                    //instant death to player
+                    H.HealthPoints = 0f;
+                    break;
+                }
+            case "Box_10":
+                {
+                    //deal 10 damage for normal box
+                    H.HealthPoints -= boxDamage;
+                    break;
+                }
+            case "SpikeBox_20":
+                {
+                    //deal 20 damage for spiked box
+                    H.HealthPoints -= spikeBoxDamage;
+                    break;
+                }
+            case "Saw_40":
+                {
+                    //deal 40 damage for spinning saw
+                    H.HealthPoints -= saw;
+                    break;
+                }
         }
     }
 }
