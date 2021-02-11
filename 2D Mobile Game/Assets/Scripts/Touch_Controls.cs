@@ -2,7 +2,7 @@
 
 public class Touch_Controls : MonoBehaviour
 {
-    public enum Swipe { None, Up, Down, Left, Right };
+    public enum Swipe { None, Tap, Up, Down, Left, Right };
 
     public float minSwipeLength = 200f;
     Vector2 firstPressPos;
@@ -30,7 +30,7 @@ public class Touch_Controls : MonoBehaviour
                 // Make sure it was a legit swipe, not a tap
                 if (currentSwipe.sqrMagnitude < minSwipeLength)
                 {
-                    swipeDirection = Swipe.None;
+                    swipeDirection = Swipe.Tap;
                     return;
                 }
 

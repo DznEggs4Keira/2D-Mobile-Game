@@ -77,6 +77,11 @@ public class Player_Controller : MonoBehaviour
                     //rb.velocity = Vector2.right * dashSpeed * 4;
                     Debug.Log("right swipe");
                     break;
+
+                //Shoot Gun
+                case Touch_Controls.Swipe.Tap:
+                    //Callback function needed
+                    break;
             }
         }
     }

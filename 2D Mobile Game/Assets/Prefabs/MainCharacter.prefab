@@ -52,6 +52,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -198,7 +199,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a6c66a7a066b44c9f84b7ed3b50bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RespawnPoint: {fileID: 0}
-  healthBar: {fileID: 0}
+  RespawnPoint: {fileID: 8145020394075129164, guid: acf221fd48353844299a58d3d743cf50,
+    type: 3}
+  healthBar: {fileID: 5791605963141128714, guid: c46fec0065115f644aaa4234148564ac,
+    type: 3}
   StartingHealth: 100
   _HealthPoints: 100

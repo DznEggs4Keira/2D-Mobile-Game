@@ -21,7 +21,7 @@ public class Health : MonoBehaviour
             if (_HealthPoints <= 0f)
             {
                 //put player on dead layer
-                this.gameObject.layer = 3;
+                gameObject.layer = 3;
 
                 StartCoroutine(Respawn(5));
             }
@@ -40,15 +40,15 @@ public class Health : MonoBehaviour
 
     IEnumerator Respawn(float delay)
     {
-        this.gameObject.GetComponent<Animator>().SetTrigger("Dead");
+        gameObject.GetComponent<Animator>().SetTrigger("Dead");
 
         yield return new WaitForSeconds(delay);
 
-        this.transform.position = RespawnPoint.transform.position;
-        this.transform.rotation = RespawnPoint.transform.rotation;
+        transform.position = RespawnPoint.transform.position;
+        transform.rotation = RespawnPoint.transform.rotation;
 
-        this.gameObject.GetComponent<Animator>().SetTrigger("Respawn");
+        gameObject.GetComponent<Animator>().SetTrigger("Respawn");
         HealthPoints = StartingHealth;
-        this.gameObject.layer = 0;
+        gameObject.layer = 0;
     }
 }
