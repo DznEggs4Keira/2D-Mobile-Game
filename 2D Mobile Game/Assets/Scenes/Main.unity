@@ -2113,6 +2113,11 @@ MonoBehaviour:
     prefab: {fileID: 4218166548149161604, guid: efb1625238c5463489bbc7b18d71edf5,
       type: 3}
     size: 1
+  Bullets:
+  - tag: Bullet
+    prefab: {fileID: 5130167444693972187, guid: de8f478dbdde79a449f00908803dfb38,
+      type: 3}
+    size: 10
 --- !u!4 &772367017
 Transform:
   m_ObjectHideFlags: 0

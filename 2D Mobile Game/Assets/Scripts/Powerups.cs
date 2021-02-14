@@ -7,11 +7,6 @@ public class Powerups : MonoBehaviour
     float shieldTimer = 5f;
     float gunTimer = 5f;
 
-    private void Start()
-    {
-        //create gun bullet instantantiates and keep for use
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Handle Effects on Player
@@ -37,7 +32,7 @@ public class Powerups : MonoBehaviour
                     }
                 case "Banana_Gun":
                     {
-                        StartCoroutine(GunPickup());
+                        StartCoroutine(GunPickup(collision));
                         break;
                     }
             }
@@ -74,18 +69,20 @@ public class Powerups : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    IEnumerator GunPickup()
+    IEnumerator GunPickup(Collider2D collision)
     {
         Debug.Log("Banana Gun Picked Up");
 
         //don't show banana sprite when gun is picked up
         GetComponent<SpriteRenderer>().enabled = false;
 
-        //Enable use of gun bullets
+        //Enable use of gun
+        collision.GetComponent<Player_Controller>().SetGunActive(true);
 
         yield return new WaitForSeconds(gunTimer);
 
-        //Disable use of gun bullets
+        //Disable use of gun
+        collision.GetComponent<Player_Controller>().SetGunActive(false);
 
         Debug.Log("Banana Gun Timed Out");
 

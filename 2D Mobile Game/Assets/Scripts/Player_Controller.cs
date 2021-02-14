@@ -4,9 +4,11 @@ public class Player_Controller : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Animator animator;
+    public GameObject bulletSpawnPoint;
     public SpriteRenderer sr;
     public Touch_Controls touch;
 
+    float force = 300f;
     float dashTime;
 
     public float dashSpeed;
@@ -80,7 +82,8 @@ public class Player_Controller : MonoBehaviour
 
                 //Shoot Gun
                 case Touch_Controls.Swipe.Tap:
-                    //Callback function needed
+                    ShootGun();
+
                     break;
             }
         }
@@ -132,4 +135,27 @@ public class Player_Controller : MonoBehaviour
     //        }
     //    }
     //}
+
+    public void SetGunActive(bool value)
+    {
+        if (value)
+        {
+            bulletSpawnPoint.SetActive(true);
+        }
+        else
+        {
+            bulletSpawnPoint.SetActive(false);
+            return;
+        }
+    }
+
+    void ShootGun()
+    {
+        //spawn bullet at bullet spawn point
+        var bullet = Object_Pooler.Instance.SpawnBullets(Object_Pooler.Instance.Bullets[0].tag,
+            bulletSpawnPoint.GetComponent<Transform>().position, Quaternion.identity);
+
+        //give velocity to bullet
+        bullet.GetComponent<Rigidbody2D>().velocity = (touch.Tap * force * Time.deltaTime);
+    }    
 }

@@ -23,15 +23,33 @@ public class Object_Pooler : MonoBehaviour
 
     public List<Pool> Enemies;
     public List<Pool> Powerups;
+    public List<Pool> Bullets;
 
+    public Dictionary<string, Queue<GameObject>> bulletPool;
     public Dictionary<string, Queue<GameObject>> powerPool;
     public Dictionary<string, Queue<GameObject>> enemyPool;
 
     // Start is called before the first frame update
     void Start()
     {
+        bulletPool = new Dictionary<string, Queue<GameObject>>();
         enemyPool = new Dictionary<string, Queue<GameObject>>();
         powerPool = new Dictionary<string, Queue<GameObject>>();
+
+        //Bullets
+        foreach (Pool pool in Bullets)
+        {
+            Queue<GameObject> objectPool = new Queue<GameObject>();
+
+            for (int i = 0; i < pool.size; i++)
+            {
+                GameObject obj = Instantiate(pool.prefab);
+                obj.SetActive(false);
+                objectPool.Enqueue(obj);
+            }
+
+            bulletPool.Add(pool.tag, objectPool);
+        }
 
         //Enemies
         foreach (Pool pool in Enemies)
@@ -96,6 +114,24 @@ public class Object_Pooler : MonoBehaviour
         objectToSpawn.transform.rotation = rotation;
 
         powerPool[tag].Enqueue(objectToSpawn);
+
+        return objectToSpawn;
+    }
+
+    public GameObject SpawnBullets(string tag, Vector2 position, Quaternion rotation)
+    {
+        if (!bulletPool.ContainsKey(tag))
+        {
+            Debug.LogWarning("Pool with tag " + tag + "doesn't exist");
+            return null;
+        }
+
+        GameObject objectToSpawn = bulletPool[tag].Dequeue();
+        objectToSpawn.SetActive(true);
+        objectToSpawn.transform.position = position;
+        objectToSpawn.transform.rotation = rotation;
+
+        bulletPool[tag].Enqueue(objectToSpawn);
 
         return objectToSpawn;
     }
