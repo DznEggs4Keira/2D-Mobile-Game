@@ -25,8 +25,8 @@ public class Player_Controller : MonoBehaviour
     //handle animations in update for framerate
     private void Update()
     {
-        animator.SetFloat("Vertical", touch.currentSwipe.y);
-        animator.SetFloat("Horizontal", touch.currentSwipe.x);
+        animator.SetFloat("Vertical", touch.CurrentSwipe.y);
+        animator.SetFloat("Horizontal", touch.CurrentSwipe.x);
 
         {
             if (Touch_Controls.swipeDirection == Touch_Controls.Swipe.None 
@@ -88,46 +88,52 @@ public class Player_Controller : MonoBehaviour
         {
             dashTime = startDashTime;
             Debug.Log("dash reset");
+
             rb.velocity = Vector2.zero;
+            return;
         }
 
-        else
+        dashTime -= Time.deltaTime;
+
+        switch (Touch_Controls.swipeDirection)
         {
-            dashTime -= Time.deltaTime;
-
-            switch (Touch_Controls.swipeDirection)
-            {
-                case Touch_Controls.Swipe.None:
-                default:
-                    velocity = Vector2.zero;
-                    //Debug.Log("No swipe");
-                    break;
-
-                //Dashing movement
-                case Touch_Controls.Swipe.Up:
-                    velocity = Vector2.up * dashSpeed;
+            //Dashing movement
+            case Touch_Controls.Swipe.Up:
+                {
+                    velocity = Vector2.up * dashSpeed * Time.deltaTime;
                     Debug.Log("Up swipe");
                     break;
+                }
 
-                case Touch_Controls.Swipe.Down:
-                    velocity = Vector2.down * dashSpeed;
+            case Touch_Controls.Swipe.Down:
+                {
+                    velocity = Vector2.down * dashSpeed * Time.deltaTime;
                     Debug.Log("Down swipe");
                     break;
-
-                //Shifting movement
-                case Touch_Controls.Swipe.Left:
-                    velocity = Vector2.left * dashSpeed * 4;
+                }
+                
+            //Shifting movement
+            case Touch_Controls.Swipe.Left:
+                {
+                    velocity = Vector2.left * dashSpeed * 4 * Time.deltaTime;
                     Debug.Log("Left swipe");
                     break;
+                }
 
-                case Touch_Controls.Swipe.Right:
-                    velocity = Vector2.right * dashSpeed * 4;
+            case Touch_Controls.Swipe.Right:
+                {
+                    velocity = Vector2.right * dashSpeed * 4 * Time.deltaTime;
                     Debug.Log("right swipe");
                     break;
-            }
-
-            rb.velocity = velocity;
+                }
+            default:
+                {
+                    velocity = Vector2.zero;
+                    break;
+                }
         }
+
+        rb.velocity = velocity;
     }
 
     public void SetGunActive(bool value)

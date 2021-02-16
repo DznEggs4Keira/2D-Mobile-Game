@@ -7,20 +7,10 @@ public class Bullets : MonoBehaviour
     //Handle Collision and movement and set active to false
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 6)
-            gameObject.SetActive(false);
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
+        //"destroy" the enemy
+        collision.gameObject.SetActive(false);
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //Deactivate bullet
+        gameObject.SetActive(false);
     }
 }
