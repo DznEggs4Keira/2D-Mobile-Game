@@ -8,7 +8,7 @@ public class Player_Controller : MonoBehaviour
     public SpriteRenderer sr;
     public Touch_Controls touch;
 
-    float force = 300f;
+    readonly float force = 300f;
     float dashTime;
 
     public float dashSpeed;
@@ -29,7 +29,8 @@ public class Player_Controller : MonoBehaviour
         animator.SetFloat("Horizontal", touch.currentSwipe.x);
 
         {
-            if (Touch_Controls.swipeDirection == Touch_Controls.Swipe.None)
+            if (Touch_Controls.swipeDirection == Touch_Controls.Swipe.None 
+                || Touch_Controls.swipeDirection == Touch_Controls.Swipe.Tap)
             {
                 animator.SetBool("Moving", false);
             }
@@ -42,99 +43,92 @@ public class Player_Controller : MonoBehaviour
         {
             switch (Touch_Controls.swipeDirection)
             {
-                case Touch_Controls.Swipe.None:
-                    //rb.velocity = Vector2.zero;
-                    //Debug.Log("No swipe");
-                    break;
-
-                //NOT REGISTERING
-                //Dashing
+                //Dashing animation
                 case Touch_Controls.Swipe.Up:
                     //run up
                     animator.SetFloat("Run", 0);
-
-                    //rb.velocity = Vector2.up * dashSpeed;
-                    Debug.Log("Up swipe");
                     break;
 
                 case Touch_Controls.Swipe.Down:
                     //run up
                     animator.SetFloat("Run", 1);
-
-                    //rb.velocity = Vector2.down * dashSpeed;
-                    Debug.Log("Down swipe");
                     break;
 
-                //Shifting
+                //Shifting animation
                 case Touch_Controls.Swipe.Left:
                     sr.flipY = true;
-
-                    //rb.velocity = Vector2.left * dashSpeed * 4;
-                    Debug.Log("Left swipe");
                     break;
 
                 case Touch_Controls.Swipe.Right:
                     sr.flipY = false;
-
-                    //rb.velocity = Vector2.right * dashSpeed * 4;
-                    Debug.Log("right swipe");
                     break;
 
                 //Shoot Gun
                 case Touch_Controls.Swipe.Tap:
-                    ShootGun();
-
+                    if(bulletSpawnPoint.activeInHierarchy)
+                    {
+                        ShootGun();
+                        Debug.Log("Gun Shot");
+                    }
+                    else
+                    {
+                        Debug.Log("Tap Registered");
+                    }
                     break;
             }
         }
     }
 
     //When dealing with physics, it's better to use Fixed Updates
-    //private void FixedUpdate()
-    //{
-    //    if(dashTime <= 0)
-    //    {
-    //        dashTime = startDashTime;
-    //        Debug.Log("dash reset");
-    //        //rb.velocity = Vector2.zero;
-    //    }
+    private void FixedUpdate()
+    {
+        Vector2 velocity;
 
-    //    else
-    //    {
-    //        dashTime -= Time.deltaTime;
+        if (dashTime <= 0)
+        {
+            dashTime = startDashTime;
+            Debug.Log("dash reset");
+            rb.velocity = Vector2.zero;
+        }
 
-    //        switch (Touch_Controls.swipeDirection)
-    //        {
-    //            case Touch_Controls.Swipe.None:
-    //                //rb.velocity = Vector2.zero;
-    //                Debug.Log("No swipe");
-    //                break;
+        else
+        {
+            dashTime -= Time.deltaTime;
 
-    //            //NOT REGISTERING
-    //            //Dashing
-    //            case Touch_Controls.Swipe.Up:
-    //                //rb.velocity = Vector2.up * dashSpeed;
-    //                Debug.Log("Up swipe");
-    //                break;
+            switch (Touch_Controls.swipeDirection)
+            {
+                case Touch_Controls.Swipe.None:
+                default:
+                    velocity = Vector2.zero;
+                    //Debug.Log("No swipe");
+                    break;
 
-    //            case Touch_Controls.Swipe.Down:
-    //                //rb.velocity = Vector2.down * dashSpeed;
-    //                Debug.Log("Down swipe");
-    //                break;
+                //Dashing movement
+                case Touch_Controls.Swipe.Up:
+                    velocity = Vector2.up * dashSpeed;
+                    Debug.Log("Up swipe");
+                    break;
 
-    //            //Shifting
-    //            case Touch_Controls.Swipe.Left:
-    //                //rb.velocity = Vector2.left * dashSpeed * 4;
-    //                Debug.Log("Left swipe");
-    //                break;
+                case Touch_Controls.Swipe.Down:
+                    velocity = Vector2.down * dashSpeed;
+                    Debug.Log("Down swipe");
+                    break;
 
-    //            case Touch_Controls.Swipe.Right:
-    //                //rb.velocity = Vector2.right * dashSpeed * 4;
-    //                Debug.Log("right swipe");
-    //                break;
-    //        }
-    //    }
-    //}
+                //Shifting movement
+                case Touch_Controls.Swipe.Left:
+                    velocity = Vector2.left * dashSpeed * 4;
+                    Debug.Log("Left swipe");
+                    break;
+
+                case Touch_Controls.Swipe.Right:
+                    velocity = Vector2.right * dashSpeed * 4;
+                    Debug.Log("right swipe");
+                    break;
+            }
+
+            rb.velocity = velocity;
+        }
+    }
 
     public void SetGunActive(bool value)
     {
@@ -145,7 +139,6 @@ public class Player_Controller : MonoBehaviour
         else
         {
             bulletSpawnPoint.SetActive(false);
-            return;
         }
     }
 
@@ -153,9 +146,9 @@ public class Player_Controller : MonoBehaviour
     {
         //spawn bullet at bullet spawn point
         var bullet = Object_Pooler.Instance.SpawnBullets(Object_Pooler.Instance.Bullets[0].tag,
-            bulletSpawnPoint.GetComponent<Transform>().position, Quaternion.identity);
+            bulletSpawnPoint.transform.position, Quaternion.identity);
 
         //give velocity to bullet
-        bullet.GetComponent<Rigidbody2D>().velocity = (touch.Tap * force * Time.deltaTime);
+        bullet.GetComponent<Rigidbody2D>().velocity = Vector2.Lerp(bulletSpawnPoint.transform.position, touch.Tap, force);
     }    
 }

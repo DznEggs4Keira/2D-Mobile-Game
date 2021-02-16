@@ -7,7 +7,7 @@ public class Touch_Controls : MonoBehaviour
     Vector2 _tapPos;
 
     public enum Swipe { None, Tap, Up, Down, Left, Right };
-    public float minSwipeLength = 200f;
+    public float minSwipeLength = 500f;
     public Vector2 currentSwipe;
     public Vector2 Tap
     {
@@ -21,6 +21,8 @@ public class Touch_Controls : MonoBehaviour
         if (Input.touches.Length > 0)
         {
             Touch t = Input.GetTouch(0);
+
+            Tap = Camera.main.ScreenToWorldPoint(t.position);
 
             if (t.phase == TouchPhase.Began)
             {
@@ -36,10 +38,6 @@ public class Touch_Controls : MonoBehaviour
                 if (currentSwipe.sqrMagnitude < minSwipeLength)
                 {
                     swipeDirection = Swipe.Tap;
-
-                    //save firstpos as tap
-                    Tap = firstPressPos;
-
                     return;
                 }
 
