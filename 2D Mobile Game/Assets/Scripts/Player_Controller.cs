@@ -100,14 +100,14 @@ public class Player_Controller : MonoBehaviour
             //Dashing movement
             case Touch_Controls.Swipe.Up:
                 {
-                    velocity = Vector2.up * dashSpeed * Time.deltaTime;
+                    velocity = Vector2.up * dashSpeed;
                     Debug.Log("Up swipe");
                     break;
                 }
 
             case Touch_Controls.Swipe.Down:
                 {
-                    velocity = Vector2.down * dashSpeed * Time.deltaTime;
+                    velocity = Vector2.down * dashSpeed;
                     Debug.Log("Down swipe");
                     break;
                 }
@@ -115,14 +115,14 @@ public class Player_Controller : MonoBehaviour
             //Shifting movement
             case Touch_Controls.Swipe.Left:
                 {
-                    velocity = Vector2.left * dashSpeed * 4 * Time.deltaTime;
+                    velocity = Vector2.left * dashSpeed * 4;
                     Debug.Log("Left swipe");
                     break;
                 }
 
             case Touch_Controls.Swipe.Right:
                 {
-                    velocity = Vector2.right * dashSpeed * 4 * Time.deltaTime;
+                    velocity = Vector2.right * dashSpeed * 4;
                     Debug.Log("right swipe");
                     break;
                 }
@@ -134,6 +134,7 @@ public class Player_Controller : MonoBehaviour
         }
 
         rb.velocity = velocity;
+        //rb.AddForce(velocity);
     }
 
     public void SetGunActive(bool value)

@@ -1567,7 +1567,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &587621383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3533,7 +3533,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 2.0700073, y: 0}
   m_SizeDelta: {x: 4.1357117, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5088,6 +5088,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704436249143763223, guid: e3ea7b65aeab0b742a25f6e0dfbe9758,
+        type: 3}
+      propertyPath: dashSpeed
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3ea7b65aeab0b742a25f6e0dfbe9758, type: 3}

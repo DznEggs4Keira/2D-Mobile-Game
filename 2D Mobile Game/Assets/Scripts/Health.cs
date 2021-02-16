@@ -23,6 +23,9 @@ public class Health : MonoBehaviour
                 //put player on dead layer
                 gameObject.layer = 3;
 
+                //disable movement
+                gameObject.GetComponent<Player_Controller>().enabled = false;
+
                 StartCoroutine(Respawn(5));
             }
         }
@@ -50,5 +53,8 @@ public class Health : MonoBehaviour
         gameObject.GetComponent<Animator>().SetTrigger("Respawn");
         HealthPoints = StartingHealth;
         gameObject.layer = 0;
+
+        //enable movement
+        gameObject.GetComponent<Player_Controller>().enabled = true;
     }
 }

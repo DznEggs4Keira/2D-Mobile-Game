@@ -179,8 +179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1f02e9752e3564bad5a88bbbc84dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSwipeLength: 200
-  currentSwipe: {x: 0, y: 0}
 --- !u!114 &8704436249143763223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +196,7 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 8413128857983321833}
   sr: {fileID: 8704436249143763221}
   touch: {fileID: 937980316}
-  dashSpeed: 50
+  dashSpeed: 20
   startDashTime: 0.1
 --- !u!95 &-1870362186206748371
 Animator:
