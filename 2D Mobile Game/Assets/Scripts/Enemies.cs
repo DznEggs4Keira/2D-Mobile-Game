@@ -4,6 +4,8 @@ public class Enemies : MonoBehaviour
 {
     public Animator animator = null;
 
+    public GameObject go_Sparks;
+
     float boxDamage = 10f;
     float spikeBoxDamage = 20f;
     float saw = 40f;
@@ -45,6 +47,15 @@ public class Enemies : MonoBehaviour
         dir = -dir.normalized;
 
         GetComponent<Rigidbody2D>().velocity = (dir * force * Time.deltaTime);
+
+        //fire the sparks particle at this point of collision
+        if(go_Sparks != null)
+        {
+            GameObject sparks = Instantiate(go_Sparks, new Vector3(collision.contacts[0].point.x, collision.contacts[0].point.y, 0), Quaternion.identity);
+
+            sparks.GetComponent<ParticleSystem>().Play();
+        }
+
     }
 
     private void GravityPool(Collision2D collision)

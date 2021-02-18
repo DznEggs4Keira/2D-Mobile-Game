@@ -1600,7 +1600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &587621383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3614,7 +3614,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 2.0700073, y: 0}
   m_SizeDelta: {x: 4.1357117, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4036,7 +4036,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.7529412, g: 0.6745098, b: 0.83137256, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.25
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -5098,6 +5098,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Gravity_Pool
       objectReference: {fileID: 0}
+    - target: {fileID: 5519357668161730618, guid: 8ae491e0edf86f44da0263d6cd3add5e,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 8467043613721010127, guid: 8ae491e0edf86f44da0263d6cd3add5e,
         type: 3}
       propertyPath: m_RootOrder
@@ -5181,6 +5186,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654530491567730650, guid: e3ea7b65aeab0b742a25f6e0dfbe9758,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f23572ad50c729e4989669f184ddd0a4, type: 2}
+    - target: {fileID: 8654530491567730650, guid: e3ea7b65aeab0b742a25f6e0dfbe9758,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].time
+      value: 0.40469977
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654530491567730650, guid: e3ea7b65aeab0b742a25f6e0dfbe9758,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 0.70348835
       objectReference: {fileID: 0}
     - target: {fileID: 8704436249143763210, guid: e3ea7b65aeab0b742a25f6e0dfbe9758,
         type: 3}

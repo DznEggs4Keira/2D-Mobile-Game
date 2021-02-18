@@ -8,7 +8,10 @@ public class Player_Controller : MonoBehaviour
     public SpriteRenderer sr;
     public Touch_Controls touch;
 
-    readonly float force = 300f;
+    public GameObject dashParticle;
+    public GameObject shiftParticle;
+
+    readonly float bulletForce = 5f; //5000f; - used with lerp
     float dashTime;
 
     public float dashSpeed;
@@ -43,23 +46,39 @@ public class Player_Controller : MonoBehaviour
         {
             switch (Touch_Controls.swipeDirection)
             {
-                //Dashing animation
+                //Dashing 
+                
+                //animation and effects
                 case Touch_Controls.Swipe.Up:
+
+                    Instantiate(dashParticle, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+
                     //run up
                     animator.SetFloat("Run", 0);
                     break;
 
                 case Touch_Controls.Swipe.Down:
-                    //run up
+
+                    Instantiate(dashParticle, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+
+                    //run down
                     animator.SetFloat("Run", 1);
                     break;
 
-                //Shifting animation
+                //Shifting 
+                
+                //animation and effects
                 case Touch_Controls.Swipe.Left:
+
+                    Instantiate(shiftParticle, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+
                     sr.flipY = true;
                     break;
 
                 case Touch_Controls.Swipe.Right:
+
+                    Instantiate(shiftParticle, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+
                     sr.flipY = false;
                     break;
 
@@ -84,16 +103,15 @@ public class Player_Controller : MonoBehaviour
     {
         Vector2 velocity;
 
+        dashTime -= Time.deltaTime;
+
         if (dashTime <= 0)
         {
             dashTime = startDashTime;
             Debug.Log("dash reset");
 
             rb.velocity = Vector2.zero;
-            return;
         }
-
-        dashTime -= Time.deltaTime;
 
         switch (Touch_Controls.swipeDirection)
         {
@@ -126,6 +144,8 @@ public class Player_Controller : MonoBehaviour
                     Debug.Log("right swipe");
                     break;
                 }
+
+            case Touch_Controls.Swipe.None:
             default:
                 {
                     velocity = Vector2.zero;
@@ -156,6 +176,7 @@ public class Player_Controller : MonoBehaviour
             bulletSpawnPoint.transform.position, Quaternion.identity);
 
         //give velocity to bullet
-        bullet.GetComponent<Rigidbody2D>().velocity = Vector2.Lerp(bulletSpawnPoint.transform.position, touch.Tap, force);
+        bullet.GetComponent<Rigidbody2D>().velocity = touch.Tap * bulletForce;
+            //Vector2.Lerp(bulletSpawnPoint.transform.position, touch.Tap, bulletForce);
     }    
 }

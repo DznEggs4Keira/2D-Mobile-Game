@@ -165,3 +165,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7656898779363195816}
+  go_Sparks: {fileID: 6443232466723729785, guid: 78b0350b94790c04a84f5c2a6e71f6fc,
+    type: 3}

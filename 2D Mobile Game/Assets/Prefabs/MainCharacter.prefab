@@ -269,6 +269,10 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 8413128857983321833}
   sr: {fileID: 8704436249143763221}
   touch: {fileID: 937980316}
+  dashParticle: {fileID: 156392263446544740, guid: b22d025c6eaf102408fc2f9e530d389e,
+    type: 3}
+  shiftParticle: {fileID: 1438104134358655121, guid: 0f462db7e60362c4e9209c5016340616,
+    type: 3}
   dashSpeed: 50
   startDashTime: 0.1
 --- !u!95 &-1870362186206748371

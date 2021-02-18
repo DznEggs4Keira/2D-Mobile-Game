@@ -54,6 +54,7 @@ public class Powerups : MonoBehaviour
 
         //don't show cherry sprite when shield is picked up
         GetComponent<SpriteRenderer>().enabled = false;
+        transform.GetChild(0).gameObject.SetActive(false);
 
         //move to dead layer
         collision.gameObject.layer = 3;
@@ -66,6 +67,7 @@ public class Powerups : MonoBehaviour
 
         //re enable and set gameobject to inactive for respawn
         GetComponent<SpriteRenderer>().enabled = true;
+        transform.GetChild(0).gameObject.SetActive(true);
         gameObject.SetActive(false);
     }
 
@@ -75,6 +77,7 @@ public class Powerups : MonoBehaviour
 
         //don't show banana sprite when gun is picked up
         GetComponent<SpriteRenderer>().enabled = false;
+        transform.GetChild(0).gameObject.SetActive(false);
 
         //Enable use of gun
         collision.GetComponent<Player_Controller>().SetGunActive(true);
@@ -88,6 +91,7 @@ public class Powerups : MonoBehaviour
 
         //re enable and set gameobject to inactive for respawn
         GetComponent<SpriteRenderer>().enabled = true;
+        transform.GetChild(0).gameObject.SetActive(true);
         gameObject.SetActive(false);
     }
 
