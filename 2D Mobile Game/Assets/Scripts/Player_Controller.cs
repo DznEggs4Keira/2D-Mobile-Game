@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
@@ -12,24 +13,24 @@ public class Player_Controller : MonoBehaviour
     public GameObject shiftParticle;
 
     readonly float bulletForce = 5f; //5000f; - used with lerp
-    float dashTime;
 
     public float dashSpeed;
-    public float startDashTime;
+    public float dashTime;
 
     private void Start()
     {
-        dashTime = startDashTime;
-
         //by default looking forward
         animator.SetFloat("Run", 0);
     }
 
-    //handle animations in update for framerate
+    //Called every frame
+    //Animation
+    //Particle Effects
+    //Gun Control
     private void Update()
     {
-        animator.SetFloat("Vertical", touch.CurrentSwipe.y);
-        animator.SetFloat("Horizontal", touch.CurrentSwipe.x);
+        animator.SetFloat("Vertical", touch.CurrentSwipe.normalized.y);
+        animator.SetFloat("Horizontal", touch.CurrentSwipe.normalized.x);
 
         {
             if (Touch_Controls.swipeDirection == Touch_Controls.Swipe.None 
@@ -47,11 +48,10 @@ public class Player_Controller : MonoBehaviour
             switch (Touch_Controls.swipeDirection)
             {
                 //Dashing 
-                
                 //animation and effects
                 case Touch_Controls.Swipe.Up:
 
-                    Instantiate(dashParticle, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                    Instantiate(dashParticle, transform.position, Quaternion.identity).GetComponent<ParticleSystem>().Play();
 
                     //run up
                     animator.SetFloat("Run", 0);
@@ -59,7 +59,7 @@ public class Player_Controller : MonoBehaviour
 
                 case Touch_Controls.Swipe.Down:
 
-                    Instantiate(dashParticle, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                    Instantiate(dashParticle, transform.position, Quaternion.identity).GetComponent<ParticleSystem>().Play();
 
                     //run down
                     animator.SetFloat("Run", 1);
@@ -70,14 +70,14 @@ public class Player_Controller : MonoBehaviour
                 //animation and effects
                 case Touch_Controls.Swipe.Left:
 
-                    Instantiate(shiftParticle, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                    Instantiate(shiftParticle, transform.position, Quaternion.identity).GetComponent<ParticleSystem>().Play();
 
                     sr.flipY = true;
                     break;
 
                 case Touch_Controls.Swipe.Right:
 
-                    Instantiate(shiftParticle, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                    Instantiate(shiftParticle, transform.position, Quaternion.identity).GetComponent<ParticleSystem>().Play();
 
                     sr.flipY = false;
                     break;
@@ -99,62 +99,30 @@ public class Player_Controller : MonoBehaviour
     }
 
     //When dealing with physics, it's better to use Fixed Updates
+    //This will handle the movement of the player
     private void FixedUpdate()
     {
-        Vector2 velocity;
-
-        dashTime -= Time.deltaTime;
-
-        if (dashTime <= 0)
+        var
+        velocity = Touch_Controls.swipeDirection switch
         {
-            dashTime = startDashTime;
-            Debug.Log("dash reset");
+            Touch_Controls.Swipe.Up => Vector2.up,//Dash upwards
+            Touch_Controls.Swipe.Down => Vector2.down,//Dash downwards
+            Touch_Controls.Swipe.Left => Vector2.left,//Shift Left
+            Touch_Controls.Swipe.Right => Vector2.right,//Shift Right
+            _ => Vector2.zero,//no swipe registered so no movement
+        };
 
-            rb.velocity = Vector2.zero;
-        }
+        //move player
+        StartCoroutine(Move(velocity));
+    }
 
-        switch (Touch_Controls.swipeDirection)
-        {
-            //Dashing movement
-            case Touch_Controls.Swipe.Up:
-                {
-                    velocity = Vector2.up * dashSpeed;
-                    Debug.Log("Up swipe");
-                    break;
-                }
+    IEnumerator Move(Vector2 velocity)
+    {
+        rb.velocity = velocity * dashSpeed;
 
-            case Touch_Controls.Swipe.Down:
-                {
-                    velocity = Vector2.down * dashSpeed;
-                    Debug.Log("Down swipe");
-                    break;
-                }
-                
-            //Shifting movement
-            case Touch_Controls.Swipe.Left:
-                {
-                    velocity = Vector2.left * dashSpeed * 4;
-                    Debug.Log("Left swipe");
-                    break;
-                }
+        yield return new WaitForSeconds(dashTime);
 
-            case Touch_Controls.Swipe.Right:
-                {
-                    velocity = Vector2.right * dashSpeed * 4;
-                    Debug.Log("right swipe");
-                    break;
-                }
-
-            case Touch_Controls.Swipe.None:
-            default:
-                {
-                    velocity = Vector2.zero;
-                    break;
-                }
-        }
-
-        rb.velocity = velocity;
-        //rb.AddForce(velocity);
+        rb.velocity = velocity * 0f;
     }
 
     public void SetGunActive(bool value)
@@ -177,6 +145,5 @@ public class Player_Controller : MonoBehaviour
 
         //give velocity to bullet
         bullet.GetComponent<Rigidbody2D>().velocity = touch.Tap * bulletForce;
-            //Vector2.Lerp(bulletSpawnPoint.transform.position, touch.Tap, bulletForce);
     }    
 }

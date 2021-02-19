@@ -56,8 +56,8 @@ public class Powerups : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = false;
         transform.GetChild(0).gameObject.SetActive(false);
 
-        //move to dead layer
-        collision.gameObject.layer = 3;
+        //move to powerup layer
+        collision.gameObject.layer = 7;
 
         yield return new WaitForSeconds(shieldTimer);
 
