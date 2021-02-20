@@ -3,7 +3,10 @@ guid: 52fb88cb3dcb0844f86b23f892e8d7b9
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - animator: {instanceID: 0}
+  - go_Sparks: {fileID: 6443232466723729785, guid: 78b0350b94790c04a84f5c2a6e71f6fc,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

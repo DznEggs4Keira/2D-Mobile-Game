@@ -3,7 +3,9 @@ guid: 4b4b3486034f7864fb70d96599c49e8a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - go_Sparks: {fileID: 6443232466723729785, guid: b8669d6f1a5e76542a01fa0bacc567e0,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

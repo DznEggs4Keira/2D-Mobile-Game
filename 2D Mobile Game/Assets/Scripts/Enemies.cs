@@ -6,11 +6,10 @@ public class Enemies : MonoBehaviour
 
     public GameObject go_Sparks;
 
-    float boxDamage = 10f;
-    float spikeBoxDamage = 20f;
-    float saw = 40f;
-
-    float force = 200f;
+    readonly float boxDamage = 10f;
+    readonly float spikeBoxDamage = 20f;
+    readonly float saw = 40f;
+    readonly float force = 200f;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -51,9 +50,7 @@ public class Enemies : MonoBehaviour
         //fire the sparks particle at this point of collision
         if(go_Sparks != null)
         {
-            GameObject sparks = Instantiate(go_Sparks, new Vector3(collision.contacts[0].point.x, collision.contacts[0].point.y, 0), Quaternion.identity);
-
-            sparks.GetComponent<ParticleSystem>().Play();
+            Instantiate(go_Sparks, new Vector3(collision.contacts[0].point.x, collision.contacts[0].point.y, 0), Quaternion.identity).GetComponent<ParticleSystem>().Play();
         }
 
     }

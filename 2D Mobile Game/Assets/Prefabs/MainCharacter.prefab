@@ -206,7 +206,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.019493043}
+  m_Offset: {x: 0, y: -0.016352773}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -217,7 +217,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.22, y: 0.27898613}
+  m_Size: {x: 0.22, y: 0.27270558}
   m_EdgeRadius: 0
 --- !u!50 &8704436249143763211
 Rigidbody2D:
@@ -227,7 +227,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8704436249143763210}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   shiftParticle: {fileID: 1438104134358655121, guid: 0f462db7e60362c4e9209c5016340616,
     type: 3}
   dashSpeed: 10
-  startDashTime: 0.1
+  dashTime: 0.1
 --- !u!95 &-1870362186206748371
 Animator:
   serializedVersion: 3
@@ -307,9 +307,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a6c66a7a066b44c9f84b7ed3b50bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameOverScreen: {fileID: 5145859043472443744, guid: 4106d7ff1050983418ebfab06c46b08c,
+    type: 3}
   RespawnPoint: {fileID: 8145020394075129164, guid: acf221fd48353844299a58d3d743cf50,
     type: 3}
-  healthBar: {fileID: 5791605963141128714, guid: c46fec0065115f644aaa4234148564ac,
+  healthBar: {fileID: 4897472279300999641, guid: c46fec0065115f644aaa4234148564ac,
     type: 3}
   StartingHealth: 100
   _HealthPoints: 100

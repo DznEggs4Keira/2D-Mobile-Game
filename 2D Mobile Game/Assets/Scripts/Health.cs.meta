@@ -3,7 +3,13 @@ guid: d2a6c66a7a066b44c9f84b7ed3b50bb7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - GameOverScreen: {fileID: 5145859043472443744, guid: 4106d7ff1050983418ebfab06c46b08c,
+      type: 3}
+  - RespawnPoint: {fileID: 8145020394075129164, guid: acf221fd48353844299a58d3d743cf50,
+      type: 3}
+  - healthBar: {fileID: 4897472279300999641, guid: c46fec0065115f644aaa4234148564ac,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

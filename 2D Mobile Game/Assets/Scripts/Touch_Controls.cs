@@ -29,7 +29,10 @@ public class Touch_Controls : MonoBehaviour
 
     private void Update()
     {
-        m_Text.text = message + " " + CurrentSwipe;
+        if(m_Text != null)
+        {
+            m_Text.text = message + " " + CurrentSwipe;
+        }
 
         //Touch has occured
         if(Input.touchCount > 0)

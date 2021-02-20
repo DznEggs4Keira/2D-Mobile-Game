@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-
+    public GameObject GameOverScreen;
     public GameObject RespawnPoint;
 
     public HealthBar healthBar;
@@ -20,13 +20,7 @@ public class Health : MonoBehaviour
 
             if (_HealthPoints <= 0f)
             {
-                //put player on dead layer
-                gameObject.layer = 3;
-
-                //disable movement
-                gameObject.GetComponent<Player_Controller>().enabled = false;
-
-                StartCoroutine(Respawn(5));
+                StartCoroutine(Respawn(2));
             }
         }
     }
@@ -41,20 +35,24 @@ public class Health : MonoBehaviour
         healthBar.SetMaxHealth((int)StartingHealth);
     }
 
+    //not working as intended
     IEnumerator Respawn(float delay)
     {
         gameObject.GetComponent<Animator>().SetTrigger("Dead");
 
+        //wait for the animation to end
+        yield return new WaitForSeconds(0.360f);
+
+        gameObject.SetActive(false);
+
         yield return new WaitForSeconds(delay);
+
+        gameObject.SetActive(true);
 
         transform.position = RespawnPoint.transform.position;
         transform.rotation = RespawnPoint.transform.rotation;
 
         gameObject.GetComponent<Animator>().SetTrigger("Respawn");
         HealthPoints = StartingHealth;
-        gameObject.layer = 0;
-
-        //enable movement
-        gameObject.GetComponent<Player_Controller>().enabled = true;
     }
 }
