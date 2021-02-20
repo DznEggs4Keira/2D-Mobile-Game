@@ -12,15 +12,60 @@ public class Player_Controller : MonoBehaviour
     public GameObject dashParticle;
     public GameObject shiftParticle;
 
-    readonly float bulletForce = 5f; //5000f; - used with lerp
+    readonly float bulletForce = 5f;
 
     public float dashSpeed;
-    public float dashTime;
 
     private void Start()
     {
         //by default looking forward
         animator.SetFloat("Run", 0);
+    }
+
+    //When dealing with physics, it's better to use Fixed Updates
+    //This will handle the movement of the player
+    private void FixedUpdate()
+    {
+        if (touch.dashTime <= 0)
+        {
+            //Set player velocity to zero and reset dash time
+            Touch_Controls.swipeDirection = Touch_Controls.Swipe.None;
+            rb.velocity = Vector2.zero;
+        }
+        else
+        {
+            touch.dashTime -= Time.fixedDeltaTime;
+
+            switch (Touch_Controls.swipeDirection)
+            {
+                case Touch_Controls.Swipe.Up:
+                    {
+                        rb.velocity = Vector2.up * dashSpeed;
+                        break;
+                    }
+                case Touch_Controls.Swipe.Down:
+                    {
+                        rb.velocity = Vector2.down * dashSpeed;
+                        break;
+                    }
+                case Touch_Controls.Swipe.Left:
+                    {
+                        rb.velocity = Vector2.left * dashSpeed * 4;
+                        break;
+                    }
+                case Touch_Controls.Swipe.Right:
+                    {
+                        rb.velocity = Vector2.right * dashSpeed * 4;
+                        break;
+                    }
+                default:
+                    {
+                        rb.velocity = Vector2.zero;
+                        touch.dashTime = touch.startDashTime;
+                        break;
+                    }
+            }
+        }
     }
 
     //Called every frame
@@ -98,33 +143,6 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
-    //When dealing with physics, it's better to use Fixed Updates
-    //This will handle the movement of the player
-    private void FixedUpdate()
-    {
-        var
-        velocity = Touch_Controls.swipeDirection switch
-        {
-            Touch_Controls.Swipe.Up => Vector2.up,//Dash upwards
-            Touch_Controls.Swipe.Down => Vector2.down,//Dash downwards
-            Touch_Controls.Swipe.Left => Vector2.left,//Shift Left
-            Touch_Controls.Swipe.Right => Vector2.right,//Shift Right
-            _ => Vector2.zero,//no swipe registered so no movement
-        };
-
-        //move player
-        StartCoroutine(Move(velocity));
-    }
-
-    IEnumerator Move(Vector2 velocity)
-    {
-        rb.velocity = velocity * dashSpeed;
-
-        yield return new WaitForSeconds(dashTime);
-
-        rb.velocity = velocity * 0f;
-    }
-
     public void SetGunActive(bool value)
     {
         if (value)
@@ -146,4 +164,5 @@ public class Player_Controller : MonoBehaviour
         //give velocity to bullet
         bullet.GetComponent<Rigidbody2D>().velocity = touch.Tap * bulletForce;
     }    
+
 }

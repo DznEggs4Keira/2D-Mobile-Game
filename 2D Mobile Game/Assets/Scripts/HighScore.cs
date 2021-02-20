@@ -31,4 +31,10 @@ public class HighScore : MonoBehaviour
             hiScore.text = score.text;
         }
     }
+
+    public void ResetCurrScore()
+    {
+        //set teh current score back to zero to reset it
+        currentScore = 0f;
+    }
 }

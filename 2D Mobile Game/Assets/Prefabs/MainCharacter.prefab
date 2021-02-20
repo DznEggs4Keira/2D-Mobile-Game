@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2468105305598139224
 Transform:
   m_ObjectHideFlags: 0
@@ -275,7 +275,8 @@ MonoBehaviour:
   shiftParticle: {fileID: 1438104134358655121, guid: 0f462db7e60362c4e9209c5016340616,
     type: 3}
   dashSpeed: 10
-  dashTime: 0.1
+  dashTime: 0.5
+  startDashTime: 0.5
 --- !u!95 &-1870362186206748371
 Animator:
   serializedVersion: 3
@@ -307,8 +308,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a6c66a7a066b44c9f84b7ed3b50bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameOverScreen: {fileID: 5145859043472443744, guid: 4106d7ff1050983418ebfab06c46b08c,
-    type: 3}
   RespawnPoint: {fileID: 8145020394075129164, guid: acf221fd48353844299a58d3d743cf50,
     type: 3}
   healthBar: {fileID: 4897472279300999641, guid: c46fec0065115f644aaa4234148564ac,
