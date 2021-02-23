@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
-    readonly HighScore currScore;
+    public HighScore currScore;
+    public GameObject gameOverScreen;
 
     public void ReturnToMainButton()
     {
@@ -12,6 +13,7 @@ public class GameOver : MonoBehaviour
 
     public void GameOverCalled()
     {
-        gameObject.SetActive(true);
+        gameOverScreen.gameObject.SetActive(true);
+        Time.timeScale = 0;
     }
 }

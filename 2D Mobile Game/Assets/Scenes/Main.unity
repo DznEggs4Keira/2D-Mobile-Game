@@ -1785,6 +1785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: bee017ed70053b14da191641c3576024, type: 2}
+  vibrateOn: 0
 --- !u!114 &882921853
 MonoBehaviour:
   m_ObjectHideFlags: 0

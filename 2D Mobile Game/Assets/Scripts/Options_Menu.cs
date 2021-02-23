@@ -6,12 +6,27 @@ public class Options_Menu : MonoBehaviour
     [SerializeField]
     AudioMixer audioMixer;
 
-    //returns a bool of whether vibration is enabled or not
-    public void VibrateToggleButton(bool value)
+    [SerializeField]
+    bool vibrateOn;
+
+    private void Awake()
+    {
+        //by default, they should be on
+        vibrateOn = true;
+        audioMixer.SetFloat("volume", 0);
+    }
+
+    public void Vibrate()
     {
         //if value true. do something with it.
-        if (value)
+        if (vibrateOn)
             Handheld.Vibrate();
+    }
+
+    //save a bool based on whether vibrate is on or off
+    public void VibrateToggleButton(bool value)
+    {
+        vibrateOn = value;
     }
 
     public void VolumeToggleButton(bool value)

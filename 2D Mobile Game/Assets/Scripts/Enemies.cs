@@ -16,7 +16,7 @@ public class Enemies : MonoBehaviour
         //ignore collisions with upper bound
         if(collision.gameObject.CompareTag("Upper_Bound"))
         {
-            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<BoxCollider2D>(), gameObject.GetComponent<Collider2D>(), true);
         }
         else
         {

@@ -2,10 +2,12 @@
 
 public class Enemy_Spawner : MonoBehaviour
 {
-    float force = 300f;
+    readonly float force = 300f;
     public float timer = 2f;
     [SerializeField]
     private float counter;
+
+    public Object_Pooler O_Pooler;
 
     #region Counter Spawner
 
@@ -33,7 +35,7 @@ public class Enemy_Spawner : MonoBehaviour
     void SpawnEnemies()
     {
         //random element from enemy pool list
-        int index = (int)Random.Range(0f, (Object_Pooler.Instance.Enemies.Count));
+        int index = (int)Random.Range(0f, Object_Pooler.Instance.Enemies.Count);
 
         //Spawn Enemies
         MoveEnemy(Object_Pooler.Instance.SpawnEnemies(Object_Pooler.Instance.Enemies[index].tag,

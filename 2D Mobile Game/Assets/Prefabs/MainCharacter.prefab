@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2468105305598139224
 Transform:
   m_ObjectHideFlags: 0
@@ -97,7 +97,7 @@ Transform:
   m_GameObject: {fileID: 8413128857983321833}
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.006, y: 0.087, z: 0}
-  m_LocalScale: {x: 0.33333325, y: 0.33333325, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8704436249143763222}
   m_RootOrder: 0
@@ -252,6 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1f02e9752e3564bad5a88bbbc84dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashTime: 0
+  startDashTime: 0.1
   m_Text: {fileID: 0}
 --- !u!114 &8704436249143763223
 MonoBehaviour:
@@ -274,9 +276,8 @@ MonoBehaviour:
     type: 3}
   shiftParticle: {fileID: 1438104134358655121, guid: 0f462db7e60362c4e9209c5016340616,
     type: 3}
-  dashSpeed: 10
-  dashTime: 0.5
-  startDashTime: 0.5
+  dashSpeed: 15
+  options_Menu: {fileID: 0}
 --- !u!95 &-1870362186206748371
 Animator:
   serializedVersion: 3
@@ -308,9 +309,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a6c66a7a066b44c9f84b7ed3b50bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RespawnPoint: {fileID: 8145020394075129164, guid: acf221fd48353844299a58d3d743cf50,
+  RespawnPoint: {fileID: 4748571804469528308, guid: acf221fd48353844299a58d3d743cf50,
     type: 3}
-  healthBar: {fileID: 4897472279300999641, guid: c46fec0065115f644aaa4234148564ac,
-    type: 3}
+  healthBar: {fileID: 0}
+  gameOver: {fileID: 0}
   StartingHealth: 100
   _HealthPoints: 100

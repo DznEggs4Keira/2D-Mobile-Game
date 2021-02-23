@@ -5,8 +5,11 @@ public class Health : MonoBehaviour
 {
     public GameObject RespawnPoint;
     public HealthBar healthBar;
+    public GameOver gameOver;
 
     public float StartingHealth = 100f;
+
+    int respawnCount = 0;
 
     public float HealthPoints
     {
@@ -18,6 +21,17 @@ public class Health : MonoBehaviour
 
             if (_HealthPoints <= 0f)
             {
+                respawnCount += 1;
+
+                Debug.Log(respawnCount);
+                if(respawnCount == 3)
+                {
+                    respawnCount = 0;
+                    //Game Over
+                    gameOver.GameOverCalled();
+                    return;
+                }
+                
                 //to stop player from sliding
                 gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
@@ -38,8 +52,6 @@ public class Health : MonoBehaviour
 
     IEnumerator Respawn(float delay)
     {
-        //Turn off light
-        transform.GetChild(1).gameObject.SetActive(false);
         //disable movement
         gameObject.GetComponent<Player_Controller>().enabled = false;
         //Run dead anim
@@ -51,6 +63,9 @@ public class Health : MonoBehaviour
             //don't show player sprite when dead
             GetComponent<SpriteRenderer>().enabled = false;
         }
+
+        //Turn off light
+        transform.GetChild(1).gameObject.SetActive(false);
 
         //wait for 5 seconds
         yield return new WaitForSeconds(delay);

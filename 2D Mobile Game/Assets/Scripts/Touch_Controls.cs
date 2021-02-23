@@ -7,12 +7,13 @@ public class Touch_Controls : MonoBehaviour
 
     Vector2 _tapPos;
     Vector2 _currentswipe;
+    Vector2 beginSwipePos, endSwipePos;
 
     public float dashTime;
 
     public float startDashTime = 0.1f;
 
-    readonly float maxTapLength = 20f;
+    readonly float maxTapLength = 125f;
 
     public static Swipe swipeDirection;
 
@@ -52,7 +53,31 @@ public class Touch_Controls : MonoBehaviour
             Tap = Camera.main.ScreenToWorldPoint(t.position);
 
             //check the status of the Touch
-            if(t.phase == TouchPhase.Moved) DetectSwipe(t);
+            switch(t.phase)
+            {
+                case TouchPhase.Began:
+                    beginSwipePos = t.position;
+                    break;
+
+                case TouchPhase.Moved:
+                    DetectSwipe(t);
+                    break;
+
+                case TouchPhase.Ended:
+                    endSwipePos = t.position;
+
+                    if ((endSwipePos - beginSwipePos).magnitude < maxTapLength)
+                    {
+                        swipeDirection = Swipe.Tap;
+                        message = "Tap";
+                    }
+                    break;
+
+                default:
+                    CurrentSwipe = Vector2.zero;
+                    break;
+            }
+
         }
         else
         {
@@ -60,55 +85,21 @@ public class Touch_Controls : MonoBehaviour
             dashTime = startDashTime;
         }
 
+        CurrentSwipe = endSwipePos - beginSwipePos;
     }
 
     void DetectSwipe(Touch t)
     {
-        Debug.Log(t.deltaPosition.magnitude);
-        if (t.deltaPosition.magnitude < maxTapLength)
+        if (t.deltaPosition.y > 0)
         {
-            swipeDirection = Swipe.Tap;
-            CurrentSwipe = t.deltaPosition;
-            message = "Tap";
-        }
-        else
-        {
-            if (t.deltaPosition.y > 0)
+            if (t.deltaPosition.x > 0)
             {
-                if (t.deltaPosition.x > 0)
+                if (t.deltaPosition.y < t.deltaPosition.x)
                 {
-                    if (t.deltaPosition.y < t.deltaPosition.x)
-                    {
-                        //swipe right
-                        swipeDirection = Swipe.Right;
-                        CurrentSwipe = t.deltaPosition;
-                        message = "Swipe Right";
-                    }
-                    else
-                    {
-                        //swipe up
-                        swipeDirection = Swipe.Up;
-                        CurrentSwipe = t.deltaPosition;
-                        message = "Swipe Up";
-                    }
-                }
-                else if (t.deltaPosition.x < 0)
-                {
-                    if (t.deltaPosition.y < Mathf.Abs(t.deltaPosition.x))
-                    {
-                        //swipe left
-                        swipeDirection = Swipe.Left;
-                        CurrentSwipe = t.deltaPosition;
-                        message = "Swipe Left";
-                    }
-                    else
-                    {
-                        //swipe up
-                        swipeDirection = Swipe.Up;
-                        CurrentSwipe = t.deltaPosition;
-                        message = "Swipe Up";
-                    }
-
+                    //swipe right
+                    swipeDirection = Swipe.Right;
+                    CurrentSwipe = t.deltaPosition;
+                    message = "Swipe Right";
                 }
                 else
                 {
@@ -118,42 +109,59 @@ public class Touch_Controls : MonoBehaviour
                     message = "Swipe Up";
                 }
             }
-            else if (t.deltaPosition.y < 0)
+            else if (t.deltaPosition.x < 0)
             {
-                if (t.deltaPosition.x > 0)
+                if (t.deltaPosition.y < Mathf.Abs(t.deltaPosition.x))
                 {
-                    if (Mathf.Abs(t.deltaPosition.y) < t.deltaPosition.x)
-                    {
-                        //swipe right
-                        swipeDirection = Swipe.Right;
-                        CurrentSwipe = t.deltaPosition;
-                        message = "Swipe Right";
-                    }
-                    else
-                    {
-                        //swipe down
-                        swipeDirection = Swipe.Down;
-                        CurrentSwipe = t.deltaPosition;
-                        message = "Swipe Down";
-                    }
+                    //swipe left
+                    swipeDirection = Swipe.Left;
+                    CurrentSwipe = t.deltaPosition;
+                    message = "Swipe Left";
                 }
-                else if (t.deltaPosition.x < 0)
+                else
                 {
-                    if (Mathf.Abs(t.deltaPosition.y) < Mathf.Abs(t.deltaPosition.x))
-                    {
-                        //swipe left
-                        swipeDirection = Swipe.Left;
-                        CurrentSwipe = t.deltaPosition;
-                        message = "Swipe Left";
-                    }
-                    else
-                    {
-                        //swipe up
-                        swipeDirection = Swipe.Down;
-                        CurrentSwipe = t.deltaPosition;
-                        message = "Swipe Down";
-                    }
+                    //swipe up
+                    swipeDirection = Swipe.Up;
+                    CurrentSwipe = t.deltaPosition;
+                    message = "Swipe Up";
+                }
 
+            }
+            else
+            {
+                //swipe up
+                swipeDirection = Swipe.Up;
+                CurrentSwipe = t.deltaPosition;
+                message = "Swipe Up";
+            }
+        }
+        else if (t.deltaPosition.y < 0)
+        {
+            if (t.deltaPosition.x > 0)
+            {
+                if (Mathf.Abs(t.deltaPosition.y) < t.deltaPosition.x)
+                {
+                    //swipe right
+                    swipeDirection = Swipe.Right;
+                    CurrentSwipe = t.deltaPosition;
+                    message = "Swipe Right";
+                }
+                else
+                {
+                    //swipe down
+                    swipeDirection = Swipe.Down;
+                    CurrentSwipe = t.deltaPosition;
+                    message = "Swipe Down";
+                }
+            }
+            else if (t.deltaPosition.x < 0)
+            {
+                if (Mathf.Abs(t.deltaPosition.y) < Mathf.Abs(t.deltaPosition.x))
+                {
+                    //swipe left
+                    swipeDirection = Swipe.Left;
+                    CurrentSwipe = t.deltaPosition;
+                    message = "Swipe Left";
                 }
                 else
                 {
@@ -162,31 +170,39 @@ public class Touch_Controls : MonoBehaviour
                     CurrentSwipe = t.deltaPosition;
                     message = "Swipe Down";
                 }
+
             }
             else
             {
-                if (t.deltaPosition.x > 0)
-                {
-                    //swipe right
-                    swipeDirection = Swipe.Right;
-                    CurrentSwipe = t.deltaPosition;
-                    message = "Swipe Right";
-                }
-                else if (t.deltaPosition.x < 0)
-                {
-                    //swipe left
-                    swipeDirection = Swipe.Left;
-                    CurrentSwipe = t.deltaPosition;
-                    message = "Swipe Left";
+                //swipe up
+                swipeDirection = Swipe.Down;
+                CurrentSwipe = t.deltaPosition;
+                message = "Swipe Down";
+            }
+        }
+        else
+        {
+            if (t.deltaPosition.x > 0)
+            {
+                //swipe right
+                swipeDirection = Swipe.Right;
+                CurrentSwipe = t.deltaPosition;
+                message = "Swipe Right";
+            }
+            else if (t.deltaPosition.x < 0)
+            {
+                //swipe left
+                swipeDirection = Swipe.Left;
+                CurrentSwipe = t.deltaPosition;
+                message = "Swipe Left";
 
-                }
-                else
-                {
-                    //swipe null
-                    swipeDirection = Swipe.None;
-                    CurrentSwipe = t.deltaPosition;
-                    message = "Swipe None";
-                }
+            }
+            else
+            {
+                //swipe null
+                swipeDirection = Swipe.None;
+                CurrentSwipe = t.deltaPosition;
+                message = "Swipe None";
             }
         }
     }

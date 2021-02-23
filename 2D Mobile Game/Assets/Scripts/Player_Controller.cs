@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
@@ -15,6 +14,8 @@ public class Player_Controller : MonoBehaviour
     readonly float bulletForce = 5f;
 
     public float dashSpeed;
+
+    public Options_Menu options_Menu;
 
     private void Start()
     {
@@ -72,74 +73,84 @@ public class Player_Controller : MonoBehaviour
     //Animation
     //Particle Effects
     //Gun Control
+    //Vibration
     private void Update()
     {
         animator.SetFloat("Vertical", touch.CurrentSwipe.normalized.y);
         animator.SetFloat("Horizontal", touch.CurrentSwipe.normalized.x);
 
+        if (Touch_Controls.swipeDirection == Touch_Controls.Swipe.None 
+            || Touch_Controls.swipeDirection == Touch_Controls.Swipe.Tap)
         {
-            if (Touch_Controls.swipeDirection == Touch_Controls.Swipe.None 
-                || Touch_Controls.swipeDirection == Touch_Controls.Swipe.Tap)
-            {
-                animator.SetBool("Moving", false);
-            }
-            else
-            {
-                animator.SetBool("Moving", true);
-            }
+            animator.SetBool("Moving", false);
+        }
+        else
+        {
+            animator.SetBool("Moving", true);
         }
 
+        switch (Touch_Controls.swipeDirection)
         {
-            switch (Touch_Controls.swipeDirection)
-            {
-                //Dashing 
-                //animation and effects
-                case Touch_Controls.Swipe.Up:
+            //Dashing 
+            //animation and effects
+            case Touch_Controls.Swipe.Up:
 
-                    Instantiate(dashParticle, transform.position, Quaternion.identity).GetComponent<ParticleSystem>().Play();
+                Instantiate(dashParticle, transform.position, Quaternion.identity).GetComponent<ParticleSystem>().Play();
 
-                    //run up
-                    animator.SetFloat("Run", 0);
-                    break;
+                //run up
+                animator.SetFloat("Run", 0);
 
-                case Touch_Controls.Swipe.Down:
+                //vibrate
+                options_Menu.Vibrate();
 
-                    Instantiate(dashParticle, transform.position, Quaternion.identity).GetComponent<ParticleSystem>().Play();
+                break;
 
-                    //run down
-                    animator.SetFloat("Run", 1);
-                    break;
+            case Touch_Controls.Swipe.Down:
 
-                //Shifting 
+                Instantiate(dashParticle, transform.position, Quaternion.identity).GetComponent<ParticleSystem>().Play();
+
+                //run down
+                animator.SetFloat("Run", 1);
+
+                //vibrate
+                options_Menu.Vibrate();
+                break;
+
+            //Shifting 
                 
-                //animation and effects
-                case Touch_Controls.Swipe.Left:
+            //animation and effects
+            case Touch_Controls.Swipe.Left:
 
-                    Instantiate(shiftParticle, transform.position, Quaternion.identity).GetComponent<ParticleSystem>().Play();
+                Instantiate(shiftParticle, transform.position, Quaternion.identity).GetComponent<ParticleSystem>().Play();
 
-                    sr.flipY = true;
-                    break;
+                sr.flipY = true;
 
-                case Touch_Controls.Swipe.Right:
+                //vibrate
+                options_Menu.Vibrate();
+                break;
 
-                    Instantiate(shiftParticle, transform.position, Quaternion.identity).GetComponent<ParticleSystem>().Play();
+            case Touch_Controls.Swipe.Right:
 
-                    sr.flipY = false;
-                    break;
+                Instantiate(shiftParticle, transform.position, Quaternion.identity).GetComponent<ParticleSystem>().Play();
 
-                //Shoot Gun
-                case Touch_Controls.Swipe.Tap:
-                    if(bulletSpawnPoint.activeInHierarchy)
-                    {
-                        ShootGun();
-                        Debug.Log("Gun Shot");
-                    }
-                    else
-                    {
-                        Debug.Log("Tap Registered");
-                    }
-                    break;
-            }
+                sr.flipY = false;
+
+                //vibrate
+                options_Menu.Vibrate();
+                break;
+
+            //Shoot Gun
+            case Touch_Controls.Swipe.Tap:
+                if(bulletSpawnPoint.activeInHierarchy)
+                {
+                    ShootGun();
+                    Debug.Log("Gun Shot");
+                }
+                else
+                {
+                    Debug.Log("Tap Registered");
+                }
+                break;
         }
     }
 
