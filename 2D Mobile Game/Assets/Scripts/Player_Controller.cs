@@ -168,6 +168,9 @@ public class Player_Controller : MonoBehaviour
 
     void ShootGun()
     {
+        //play gun sound
+        FindObjectOfType<Audio_Manager>().Play("Player_Shoot");
+
         //spawn bullet at bullet spawn point
         var bullet = Object_Pooler.Instance.SpawnBullets(Object_Pooler.Instance.Bullets[0].tag,
             bulletSpawnPoint.transform.position, Quaternion.identity);

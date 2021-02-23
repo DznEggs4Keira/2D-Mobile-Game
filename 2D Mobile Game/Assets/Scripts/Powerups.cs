@@ -12,6 +12,9 @@ public class Powerups : MonoBehaviour
         //Handle Effects on Player
         if (collision.gameObject.CompareTag("Player"))
         {
+            //player picked up powerup sound
+            FindObjectOfType<Audio_Manager>().Play("Power_Pickup");
+
             //Pickup
             Health H = collision.gameObject.GetComponent<Health>();
 

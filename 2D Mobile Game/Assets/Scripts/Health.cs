@@ -23,19 +23,21 @@ public class Health : MonoBehaviour
             {
                 respawnCount += 1;
 
-                Debug.Log(respawnCount);
                 if(respawnCount == 3)
                 {
-                    respawnCount = 0;
+                    //player died final
+                    FindObjectOfType<Audio_Manager>().Play("Player_Death_Final");
+
                     //Game Over
                     gameOver.GameOverCalled();
-                    return;
                 }
-                
-                //to stop player from sliding
-                gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                else
+                {
+                    //to stop player from sliding
+                    gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
-                StartCoroutine(Respawn(5));
+                    StartCoroutine(Respawn(5));
+                }
             }
         }
     }
@@ -50,10 +52,35 @@ public class Health : MonoBehaviour
         healthBar.SetMaxHealth((int)StartingHealth);
     }
 
+    public void ResetPlayer()
+    {
+        respawnCount = 0;
+
+        //reset the position and rotation of the player to the spawn point
+        transform.position = RespawnPoint.transform.position;
+        transform.rotation = RespawnPoint.transform.rotation;
+
+        //enable the sprite
+        GetComponent<SpriteRenderer>().enabled = true;
+        //enable light
+        transform.GetChild(1).gameObject.SetActive(true);
+        //run animation for respawn
+        gameObject.GetComponent<Animator>().SetTrigger("Respawn");
+
+        //reset health
+        HealthPoints = StartingHealth;
+    }
+
     IEnumerator Respawn(float delay)
     {
+        Time.timeScale = 0.5f;
+
         //disable movement
         gameObject.GetComponent<Player_Controller>().enabled = false;
+
+        //player died
+        FindObjectOfType<Audio_Manager>().Play("Player_Death");
+
         //Run dead anim
         gameObject.GetComponent<Animator>().SetTrigger("Dead");
 
@@ -68,7 +95,7 @@ public class Health : MonoBehaviour
         transform.GetChild(1).gameObject.SetActive(false);
 
         //wait for 5 seconds
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSecondsRealtime(delay);
 
         //reset the position and rotation of the player to the spawn point
         transform.position = RespawnPoint.transform.position;
@@ -83,6 +110,9 @@ public class Health : MonoBehaviour
 
         //enable movement
         gameObject.GetComponent<Player_Controller>().enabled = true;
+
+        Time.timeScale = 1f;
+
         //reset health
         HealthPoints = StartingHealth;
     }
