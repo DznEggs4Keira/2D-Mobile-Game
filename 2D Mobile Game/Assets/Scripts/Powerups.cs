@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Powerups : MonoBehaviour
 {
-    float health = 20f;
-    float shieldTimer = 5f;
-    float gunTimer = 10f;
+    readonly float health = 20f;
+    readonly float shieldTimer = 5f;
+    readonly float gunTimer = 10f;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

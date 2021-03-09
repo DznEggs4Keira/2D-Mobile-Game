@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Main_Menu : MonoBehaviour
 {
+    public Game_Manager gm;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -12,17 +14,14 @@ public class Main_Menu : MonoBehaviour
     public void PlayButton()
     {
         //Game Begin
-        Time.timeScale = 1;
+        gm.StartGame();
 
         gameObject.SetActive(false);
     }
 
     public void PauseButton()
     {
-        //Game is paused
-        Time.timeScale = 0;
-
-        //maybe do something else here
+        gm.Paused();
     }
 
     public void QuitButton()

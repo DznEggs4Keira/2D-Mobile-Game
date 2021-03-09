@@ -142,14 +142,7 @@ public class Player_Controller : MonoBehaviour
             //Shoot Gun
             case Touch_Controls.Swipe.Tap:
                 if(bulletSpawnPoint.activeInHierarchy)
-                {
                     ShootGun();
-                    Debug.Log("Gun Shot");
-                }
-                else
-                {
-                    Debug.Log("Tap Registered");
-                }
                 break;
         }
     }

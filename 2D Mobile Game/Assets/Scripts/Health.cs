@@ -5,7 +5,7 @@ public class Health : MonoBehaviour
 {
     public GameObject RespawnPoint;
     public HealthBar healthBar;
-    public GameOver gameOver;
+    public Game_Manager gm;
 
     public float StartingHealth = 100f;
 
@@ -21,15 +21,25 @@ public class Health : MonoBehaviour
 
             if (_HealthPoints <= 0f)
             {
-                respawnCount += 1;
-
                 if(respawnCount == 3)
                 {
                     //player died final
                     FindObjectOfType<Audio_Manager>().Play("Player_Death_Final");
 
-                    //Game Over
-                    gameOver.GameOverCalled();
+                    //Turn off light
+                    transform.GetChild(1).gameObject.SetActive(false);
+
+                    //Run dead anim
+                    gameObject.GetComponent<Animator>().SetTrigger("Dead");
+
+                    //once the animation has finished
+                    if (gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Dead"))
+                    {
+                        //don't show player sprite when dead
+                        GetComponent<SpriteRenderer>().enabled = false;
+                        //Game Over
+                        gm.GameOverCalled();
+                    }
                 }
                 else
                 {
@@ -73,6 +83,8 @@ public class Health : MonoBehaviour
 
     IEnumerator Respawn(float delay)
     {
+        respawnCount += 1;
+
         Time.timeScale = 0.5f;
 
         //disable movement

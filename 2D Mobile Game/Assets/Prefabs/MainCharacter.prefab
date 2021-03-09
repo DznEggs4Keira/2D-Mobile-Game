@@ -262,7 +262,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8704436249143763210}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8e7377db3cf09e40a300d65a2309918, type: 3}
   m_Name: 
@@ -309,9 +309,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a6c66a7a066b44c9f84b7ed3b50bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RespawnPoint: {fileID: 4748571804469528308, guid: acf221fd48353844299a58d3d743cf50,
-    type: 3}
+  RespawnPoint: {fileID: 0}
   healthBar: {fileID: 0}
-  gameOver: {fileID: 0}
+  gm: {fileID: 0}
   StartingHealth: 100
   _HealthPoints: 100
