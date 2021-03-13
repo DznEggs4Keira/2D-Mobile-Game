@@ -6,6 +6,7 @@ public class Health : MonoBehaviour
     public GameObject RespawnPoint;
     public HealthBar healthBar;
     public Game_Manager gm;
+    public Ad_Manager am;
 
     public float StartingHealth = 100f;
 
@@ -21,7 +22,7 @@ public class Health : MonoBehaviour
 
             if (_HealthPoints <= 0f)
             {
-                if(respawnCount == 3)
+                if(respawnCount >= 3)
                 {
                     //player died final
                     FindObjectOfType<Audio_Manager>().Play("Player_Death_Final");
@@ -37,8 +38,13 @@ public class Health : MonoBehaviour
                     {
                         //don't show player sprite when dead
                         GetComponent<SpriteRenderer>().enabled = false;
+
+                        //Ad
+                        am.PlayInterstitialAd();
+
                         //Game Over
                         gm.GameOverCalled();
+
                     }
                 }
                 else

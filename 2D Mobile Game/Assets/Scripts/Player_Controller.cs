@@ -11,7 +11,7 @@ public class Player_Controller : MonoBehaviour
     public GameObject dashParticle;
     public GameObject shiftParticle;
 
-    readonly float bulletForce = 5f;
+    readonly float bulletForce = 250f;
 
     public float dashSpeed;
 
@@ -41,22 +41,22 @@ public class Player_Controller : MonoBehaviour
             {
                 case Touch_Controls.Swipe.Up:
                     {
-                        rb.velocity = Vector2.up * dashSpeed;
+                        rb.velocity = Vector2.up * dashSpeed * Time.fixedDeltaTime;
                         break;
                     }
                 case Touch_Controls.Swipe.Down:
                     {
-                        rb.velocity = Vector2.down * dashSpeed;
+                        rb.velocity = Vector2.down * dashSpeed * Time.fixedDeltaTime;
                         break;
                     }
                 case Touch_Controls.Swipe.Left:
                     {
-                        rb.velocity = Vector2.left * dashSpeed * 4;
+                        rb.velocity = Vector2.left * dashSpeed * 4 * Time.fixedDeltaTime;
                         break;
                     }
                 case Touch_Controls.Swipe.Right:
                     {
-                        rb.velocity = Vector2.right * dashSpeed * 4;
+                        rb.velocity = Vector2.right * dashSpeed * 4 * Time.fixedDeltaTime;
                         break;
                     }
                 default:
@@ -169,7 +169,7 @@ public class Player_Controller : MonoBehaviour
             bulletSpawnPoint.transform.position, Quaternion.identity);
 
         //give velocity to bullet
-        bullet.GetComponent<Rigidbody2D>().velocity = touch.Tap * bulletForce;
+        bullet.GetComponent<Rigidbody2D>().velocity = touch.Tap * bulletForce * Time.fixedDeltaTime;
     }    
 
 }
