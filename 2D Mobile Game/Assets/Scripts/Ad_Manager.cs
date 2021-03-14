@@ -1,13 +1,14 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
 public class Ad_Manager : MonoBehaviour
 {
-    private string playStoreID = "4047499";
-    private string appStoreID = "4047498";
+    private readonly string playStoreID = "4047499";
+    private readonly string appStoreID = "4047498";
 
-    private string interstitialAd = "video";
-    private string bannerAd = "banner";
+    private readonly string interstitialAd = "video";
+    private readonly string bannerAd = "banner";
 
     public bool isTargetPlayStore;
     public bool isTestAd;
@@ -15,6 +16,8 @@ public class Ad_Manager : MonoBehaviour
     private void Start()
     {
         InitialiseAd();
+
+        StartCoroutine(PlayBannerAd());
     }
 
     private void InitialiseAd()
@@ -23,10 +26,15 @@ public class Ad_Manager : MonoBehaviour
         Advertisement.Initialize(appStoreID, isTestAd);
     }
 
-    public void PlayBannerAd()
+    IEnumerator PlayBannerAd()
     {
-        if (Advertisement.IsReady(bannerAd))
-            Advertisement.Show(bannerAd);
+        while (!Advertisement.isInitialized)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
+        Advertisement.Banner.Show(bannerAd);
     }
 
     public void PlayInterstitialAd()
