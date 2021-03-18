@@ -68,6 +68,9 @@ public class Enemies : MonoBehaviour
     {
         EnemyBounceBack(collision);
 
+        //play hit sound
+        FindObjectOfType<Audio_Manager>().Play("Player_hit");
+
         //Animation for Hit
         if (animator != null)
         {

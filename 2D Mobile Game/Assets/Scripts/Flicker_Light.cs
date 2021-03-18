@@ -1,16 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Flicker_Light : MonoBehaviour
 {
     public GameObject Lights;
 
+    // Update is called once per frame
     private void Update()
     {
         StartCoroutine(Flashing());
     }
-    // Update is called once per frame
+    
     IEnumerator Flashing()
     {
         yield return new WaitForSeconds(Random.Range(1f, 2f));
