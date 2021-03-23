@@ -7,8 +7,6 @@ public class Enemy_Spawner : MonoBehaviour
     [SerializeField]
     private float counter;
 
-    public Object_Pooler O_Pooler;
-
     #region Counter Spawner
 
     private void Start()

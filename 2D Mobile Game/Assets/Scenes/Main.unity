@@ -4588,7 +4588,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startIntervalTime: 3
-  O_Pooler: {fileID: 772367016}
 --- !u!4 &1230965523
 Transform:
   m_ObjectHideFlags: 0
@@ -7461,7 +7460,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 25.999084, y: -61.476196}
+  m_AnchoredPosition: {x: 25.999084, y: -61.47638}
   m_SizeDelta: {x: -667.94, y: -1826.504}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1826251467
@@ -7689,7 +7688,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 3
   counter: 0
-  O_Pooler: {fileID: 0}
 --- !u!4 &1872650214
 Transform:
   m_ObjectHideFlags: 0
@@ -9736,8 +9734,7 @@ PrefabInstance:
       propertyPath: options_Menu
       value: 
       objectReference: {fileID: 587621388}
-    m_RemovedComponents:
-    - {fileID: 7412609030271219730, guid: e3ea7b65aeab0b742a25f6e0dfbe9758, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3ea7b65aeab0b742a25f6e0dfbe9758, type: 3}
 --- !u!1 &8704436249167212485 stripped
 GameObject:

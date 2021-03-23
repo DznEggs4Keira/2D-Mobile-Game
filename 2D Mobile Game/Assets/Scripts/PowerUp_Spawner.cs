@@ -6,8 +6,6 @@ public class PowerUp_Spawner : MonoBehaviour
 
     private float intervalTime;
 
-    public Object_Pooler O_Pooler;
-
     private void Start()
     {
         intervalTime = startIntervalTime;
