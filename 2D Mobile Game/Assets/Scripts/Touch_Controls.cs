@@ -13,7 +13,7 @@ public class Touch_Controls : MonoBehaviour
 
     public float startDashTime = 0.1f;
 
-    readonly float maxTapLength = 30f;
+    readonly float maxTapLength = 300f;
 
     public static Swipe swipeDirection;
 

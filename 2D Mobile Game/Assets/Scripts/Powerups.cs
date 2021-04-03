@@ -1,11 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Powerups : MonoBehaviour
 {
     readonly float health = 20f;
     readonly float shieldTimer = 5f;
     readonly float gunTimer = 10f;
+
+    public Powerup_Panel powerup;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -54,6 +57,7 @@ public class Powerups : MonoBehaviour
     IEnumerator ShieldPickup(Collider2D collision)
     {
         Debug.Log("Shield Activated");
+        powerup.ShowShield(true);
 
         //don't show cherry sprite when shield is picked up
         GetComponent<SpriteRenderer>().enabled = false;
@@ -65,6 +69,8 @@ public class Powerups : MonoBehaviour
         yield return new WaitForSeconds(shieldTimer);
 
         Debug.Log("Shield Deactivated");
+        powerup.ShowShield(false);
+
         //bring back to default layer after timer out
         collision.gameObject.layer = 0;
 
@@ -77,6 +83,7 @@ public class Powerups : MonoBehaviour
     IEnumerator GunPickup(Collider2D collision)
     {
         Debug.Log("Banana Gun Picked Up");
+        powerup.ShowGun(true);
 
         //don't show banana sprite when gun is picked up
         GetComponent<SpriteRenderer>().enabled = false;
@@ -91,6 +98,7 @@ public class Powerups : MonoBehaviour
         collision.GetComponent<Player_Controller>().SetGunActive(false);
 
         Debug.Log("Banana Gun Timed Out");
+        powerup.ShowGun(false);
 
         //re enable and set gameobject to inactive for respawn
         GetComponent<SpriteRenderer>().enabled = true;

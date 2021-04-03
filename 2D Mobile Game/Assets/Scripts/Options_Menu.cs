@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using RDG;
 
 public class Options_Menu : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Options_Menu : MonoBehaviour
 
     [SerializeField]
     bool vibrateOn;
+
+    float volume = 0f;
 
     private void Awake()
     {
@@ -20,7 +23,8 @@ public class Options_Menu : MonoBehaviour
     {
         //if value true. do something with it.
         if (vibrateOn)
-            Handheld.Vibrate();
+            //Handheld.Vibrate();
+            Custom_Vibration.Vibrate(50, 100, true);
     }
 
     //save a bool based on whether vibrate is on or off
@@ -33,12 +37,18 @@ public class Options_Menu : MonoBehaviour
     {
         if(value)
         {
-            audioMixer.SetFloat("volume", 0);
+            audioMixer.SetFloat("volume", volume);
         }
         else
         {
             audioMixer.SetFloat("volume", -80);
         }
         
+    }
+
+    public void VolumeSlider(float deltaVolume)
+    {
+        volume = deltaVolume;
+        audioMixer.SetFloat("volume", volume);
     }
 }
